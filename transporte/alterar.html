@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Speed</title>
+        <link rel="shortcut icon" type="image/png" href="../images/icon.png">
+        <!--<link rel="stylesheet" href="css.css">-->
+        <link rel="stylesheet" href="../cssalternativo.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    </head>
+    <body>
+        <script src="../scriptTransporte.js"></script>
+
+        <div id="envolucro">
+
+            <iframe src="../header.html" frameborder="0" width="100%" height="210px"></iframe>
+
+            <!-- Funcionalidades -->
+            
+            <div id="barralateral">
+                <iframe src="barralateral.html" frameborder="0" width="280px" height="500px"></iframe>
+            </div>
+
+            <!-- Main -->
+            <div class="principal">
+                
+                <h1>Transporte &middot; Alterar</h1>
+                <form id="formAlterar">
+                    <h3>Transporte:</h3>
+                    <label for="iptTransporteAlterar">Transporte:</label>
+                    <select name="Placa" id="iptTransporteAlterar">
+                        <option value="None" selected>Escolha uma opção...</option>
+                    </select><br>
+
+                    <h3>Veiculo:</h3>
+                    <label for="iptPlacaAlterar">Placa:</label>
+                    <input disabled type="text" id="iptPlacaAlterar" name="Placa"><br>
+                    <label for="iptCidadeAlterar">Cidade:</label>
+                    <input disabled type="text" id="iptCidadeAlterar" name="Cidade"><br>
+                    <label for="iptEstadoAlterar">Estado:</label>
+                    <input disabled type="text" id="iptEstadoAlterar" name="Estado"><br>
+
+                    <h3>Mercadoria:</h3>
+                    <label for="iptCodigoAlterar">Código:</label>
+                    <input disabled type="text" id="iptCodigoAlterar" name="Codigo"><br>
+
+                    <h3>Previsão Entrega:</h3>
+                    <label for="iptDataInicioAlterar">Data de Inicio:</label>
+                    <input disabled type="date" id="iptDataInicioAlterar" name="dInicio"><br>
+                    <label for="iptDataTerminoAlterar">Data de Término:</label>
+                    <input disabled type="date" class="canChange" id="iptDataTerminoAlterar" name="dTermino"><br>
+
+                    <h3>Trecho:</h3>
+                    <label for="iptCidadeInicioAlterar">Cidade de Inicio:</label>
+                    <input disabled type="text" class="canChange" id="iptCidadeInicioAlterar" name="CidadeInicio"><br>
+                    <label for="iptCidadeTerminoAlterar">Cidade de Término:</label>
+                    <input disabled type="text" class="canChange" id="iptCidadeTerminoAlterar" name="CidadeTermino"><br>
+                    <label for="iptQuilometrosAlterar">Quilometragem:</label>
+                    <input disabled type="text" class="canChange" id="iptQuilometrosAlterar" name="Quilometros"><br>
+                </form>
+
+                <br>
+                <button class="action" id="alterarTransporte" disabled>Alterar</button>
+
+            </div>
+
+            <!-- Rodapé -->
+            <iframe src="../footer.html" frameborder="0" width="100%" height="100px"></iframe>
+        </div>
+        
+    </body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Speed</title>
+        <link rel="shortcut icon" type="image/png" href="../images/icon.png">
+        <!--<link rel="stylesheet" href="css.css">-->
+        <link rel="stylesheet" href="../cssalternativo.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    </head>
+    <body>
+        <script src="../scriptTransporte.js"></script>
+
+        <div id="envolucro">
+
+            <iframe src="../header.html" frameborder="0" width="100%" height="210px"></iframe>
+
+            <!-- Funcionalidades -->
+            
+            <div id="barralateral">
+                <iframe src="barralateral.html" frameborder="0" width="280px" height="500px"></iframe>
+            </div>
+
+            <!-- Main -->
+            <div class="principal">
+                
+                <h1>Transporte &middot; Inserir</h1>
+                <form>
+                    <h3>Veiculo:</h3>
+                    <label for="iptPlaca">Placa:</label>
+                    <select name="Placa" id="iptPlaca">
+                        <option value="None" selected>Escolha uma opção...</option>
+                    </select><br>
+
+                    
+                    <label for="iptCidade">Cidade:</label>
+                    <input type="text" id="iptCidade" name="Cidade" disabled><br>
+                    <label for="iptEstado">Estado:</label>
+                    <input type="text" id="iptEstado" name="Estado" disabled><br>
+
+                    <h3>Mercadoria:</h3>
+                    <label for="iptCodigo">Código:</label>
+                    <select name="Codigo" id="iptCodigo">
+                        <option value="None" selected>Escolha uma opção...</option>
+                    </select><br>
+
+                    <h3>Previsão Entrega:</h3>
+                    <label for="iptDataInicio">Data de Inicio:</label>
+                    <input type="date" id="iptDataInicio" name="dInicio"><br>
+                    <label for="iptDataTermino">Data de Término:</label>
+                    <input type="date" id="iptDataTermino" name="dTermino"><br>
+
+                    <h3>Trecho:</h3>
+                    <label for="iptCidadeInicio">Cidade de Inicio:</label>
+                    <input type="text" id="iptCidadeInicio" name="CidadeInicio"><br>
+                    <label for="iptCidadeTermino">Cidade de Término:</label>
+                    <input type="text" id="iptCidadeTermino" name="CidadeTermino"><br>
+                    <label for="iptQuilometros">Quilometragem:</label>
+                    <input type="text" id="iptQuilometros" name="Quilometros"><br>
+                </form>
+
+                <br>
+                <button class="action" id="inserirTransporte">Inserir</button>
+
+            </div>
+
+            <!-- Rodapé -->
+            <iframe src="../footer.html" frameborder="0" width="100%" height="100px"></iframe>
+        </div>
+        
+    </body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Speed</title>
+        <link rel="shortcut icon" type="image/png" href="../images/icon.png">
+        <!--<link rel="stylesheet" href="css.css">-->
+        <link rel="stylesheet" href="../cssalternativo.css">
+        <link rel="stylesheet" href="../cssButton.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    </head>
+    <body>
+
+        <script src="../scriptTransporte.js"></script>
+
+        <div id="envolucro">
+            
+
+            <!-- Cabecalho -->
+            <iframe src="../header.html" frameborder="0" width="100%" height="210px"></iframe>
+
+            <!-- Funcionalidades -->
+            <div id="barralateral">
+                <iframe src="barralateral.html" frameborder="0" width="280px" height="500px"></iframe>
+            </div>
+            
+            <!-- Main -->
+            <div class="principal">
+                
+                <h1>Transporte &middot; Excluir</h1>
+                <form>
+                    <h3>Veiculo:</h3>
+                    <label for="iptTransporte">Transporte:</label>
+                    <select name="Placa" id="iptTransporte">
+                        <option value="None" selected>Escolha uma opção...</option>
+                    </select><br>
+                </form>
+
+                <br>
+                <button class="action" id="excluirTransporte">Excluir</button>
+
+            </div>
+
+            <!-- Rodapé -->
+            <iframe src="../footer.html" frameborder="0" width="100%" height="100px"></iframe>
+        </div>
+        
+    </body>
+</html>

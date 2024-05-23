@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Speed</title>
+        <link rel="shortcut icon" type="image/png" href="./images/icon.png">
+        <!--<link rel="stylesheet" href="css.css">-->
+        <link rel="stylesheet" href="../cssalternativo.css">
+    </head>
+    <body>
+        <script src="../scriptVeiculos.js"></script>
+
+        <div id="envolucro">
+
+            <iframe src="../header.html" frameborder="0" width="100%" height="210px"></iframe>
+
+            <!-- Funcionalidades -->
+            
+            <div id="barralateral">
+                <iframe src="barralateral.html" frameborder="0" width="280px" height="500px"></iframe>
+            </div>
+
+            <!-- Main -->
+            <div class="principal">
+                
+                <h1>Veiculos &middot; Alterar</h1>
+                <form>
+                    <label for="iptPlaca">Placa:</label>
+                    <input type="text" id="iptPlaca" name="Placa"><br>
+                    <label for="iptCidade">Cidade:</label>
+                    <input type="text" id="iptCidade" name="Cidade"><br>
+                    <label for="iptEstado">Estado:</label>
+                    <input type="text" id="iptEstado" name="Estado"><br>
+
+                    <label for="iptTipo">Tipo:</label>
+                    <select name="iptTipo" id="iptTipo">
+                        <option value="Urbano">Urbano</option>
+                        <option value="Caminhão_3/4">Caminhão 3/4</option>
+                        <option value="Caminhão_Semipesado">Caminhão Semipesado</option>
+                        <option value="Caminhão_Pesado">Caminhão Pesado</option>
+                        <option value="Caminhão_Carreta">Caminhão Carreta</option>
+                        <option value="Caminhão_Combinado">Caminhão Combinado</option>
+                    </select><br>
+
+                    <label for="iptMarca">Marca:</label>
+                    <input type="text" id="iptMarca" name="Marca"><br>
+                    <label for="iptModelo">Modelo:</label>
+                    <input type="text" id="iptModelo" name="Modelo"><br>
+                    <label for="iptAno">Ano:</label>
+                    <input type="text" id="iptAno" name="Ano"><br>
+
+                    <label for="iptCombustiveis">Combustiveis:</label>
+                    <select name="iptCombustiveis" id="iptCombustiveis" multiple>
+                        <option value="Gasolina">Gasolina</option>
+                        <option value="Etanol">Etanol</option>
+                        <option value="GNV">GNV</option>
+                        <option value="Eletricidade">Eletricidade</option>
+                    </select><br><br>
+
+                    <label for="iptCor">Cor:</label>
+                    <input type="text" id="iptCor" name="Cor"><br>
+                    <label for="iptAno">Ano:</label>
+                    <input type="text" id="iptAno" name="Ano"><br>
+                    <label for="iptVelocidade_maxima">Velocidade máxima:</label>
+                    <input type="text" id="iptVelocidade_maxima" name="Velocidade_maxima"><br>
+
+                </form>
+
+                <br>
+                <button class="action" onclick="btnAlterar()">Alterar</button>
+
+            </div>
+
+            <!-- Rodapé -->
+            <iframe src="../footer.html" frameborder="0" width="100%" height="100px"></iframe>
+        </div>
+        
+    </body>
+</html>

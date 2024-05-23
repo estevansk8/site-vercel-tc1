@@ -1,0 +1,43 @@
+#container{
+   
+    margin-right: 5%;
+    margin-left: 5%;
+    
+}
+
+body {
+    background-image: url('images/fast.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+
+#cabecalho{
+    height: 20%;
+    background-color: red;
+    color: white;
+}
+
+#botoes{
+    align-items: center;
+    display: flex;  
+    justify-content: center;
+    vertical-align: middle;
+    margin-top: 210px;
+}
+
+
+.redonda{
+    width: 15%;
+    margin-right: 6%;
+}
+
+.imagita:hover{
+    width: 25%;
+}
+
+.imagita{
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}

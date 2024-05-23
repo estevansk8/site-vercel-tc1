@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Speed</title>
+        <link rel="shortcut icon" type="image/png" href="../images/icon.png">
+        <!--<link rel="stylesheet" href="css.css">-->
+        <link rel="stylesheet" href="../cssalternativo.css">
+        <link rel="stylesheet" href="../cssButton.css">
+        
+    </head>
+    <body>
+        <script src="../scriptMercadoria.js"></script>
+        <div class="container" id="envolucro">
+
+            <!-- Cabecalho -->
+            <iframe src="../header.html" frameborder="0" width="100%" height="210px"></iframe>
+
+            <!-- Funcionalidades -->
+            <div id="barralateral">
+                <iframe src="barralateral.html" frameborder="0" width="280px" height="500px"></iframe>
+            </div>
+            
+            <!-- Main -->
+            <div class="principal">
+                
+                <h1>Mercadorias &middot; Listar Todos</h1>
+                <form>
+                    <h3>Filtragem</h3>
+                    <select name="iptTipo" id="iptTipo">
+                        <option value="Todos">Todos</option>
+                        <option value="Descrição">Descrição</option>
+                        <option value="DataValidade">Data de Validade</option>
+                        <option value="Peso">Peso</option>
+                        <option value="Altura">Altura</option>
+                        <option value="Largura">Largura</option>
+                        <option value="Volume">Volume</option>
+                        <option value="Fragilidade">Fragilidade</option>
+                    </select> :
+                    <input type="text" id="iptTipo" name="iptTipo">
+                </form>
+
+                <br>
+                <button class="action" onclick="btnListarTodos()">Pesquisar</button>
+                <div id="conteudoListagem"></div>
+
+            </div>
+
+            <!-- Rodapé -->
+            <iframe src="../footer.html" frameborder="0" width="100%" height="100px"></iframe>
+        </div>
+        
+    </body>
+</html>

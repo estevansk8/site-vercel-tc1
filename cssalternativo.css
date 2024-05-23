@@ -1,0 +1,223 @@
+body{
+    margin:0px;
+    background-color: burlywood;
+}
+#envolucro{
+    width: 800px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: #675c47;
+    margin-right: auto;
+    margin-left: auto;
+}
+#divheader{
+    background-color: rgb(103, 103, 219);
+    color: white;
+    display: inline-block;
+    width: 100%;
+}
+
+#image{
+    float: left;
+}
+
+#titleText{
+    margin-left: 10px;
+    float: left;
+}
+
+#menu{
+    margin-top: 10px;
+    height: 57px;
+
+    display: inline-block;
+    width: 100%;
+}
+.buttonss{
+    width: 23%;
+    border-radius: 8px;
+    letter-spacing: 0.7px;
+    background-color: #5086bd;
+    color: #fff;
+    font-size: 21px;
+    font-family: "Lato", sans-serif;
+    cursor: pointer;
+    box-shadow: rgba(0, 9, 61, 0.2) 0px 4px 8px 0px;
+    height: 100%;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+#cabecalho{
+    margin: 10px;
+}
+.principal{
+    background-color:khaki;
+    padding: 15px;
+    margin: 0px 330px 10px 10px;
+}
+#barralateral{
+    background-color:khaki;
+    padding: 15px;
+    margin: 0px 10px 10px 10px;
+    width: 280px;
+    float:right;
+}
+#rodape{
+    color: white;
+    background-color:darkred;
+    text-align: center;
+    padding: 15px;
+    margin:10px;
+    clear:both;
+}
+
+@media all and (max-width: 50px) {
+    #conteudoListagem{
+     overflow:auto; 
+    }
+}
+
+.mercadoriaItem{
+    background-color: #5086bd;
+    color: #fff;
+
+}
+
+li a{
+    color: black;
+}
+
+input, select{
+    margin-bottom: 10px;
+}
+
+.action{
+    border-radius: 8px;
+    letter-spacing: 0.7px;
+    background-color: #5086bd;
+    color: #fff;
+    font-size: 21px;
+    font-family: "Lato", sans-serif;
+    cursor: pointer;
+    box-shadow: rgba(0, 9, 61, 0.2) 0px 4px 8px 0px;
+    border: none;
+    padding: 7px 10px;
+    text-align: center;
+    text-decoration: none;
+}
+
+ul, li {
+	list-style: none;
+	line-height: 2;
+}
+
+li:hover{
+    background-color: white;
+}
+
+#homeLeave{
+    margin: 20px;
+    float: right;
+}
+
+#homeLeave img{
+    margin-right: 10px;
+    width: 25px;
+    height: 25px;
+}
+
+/* CSS */
+.btnrelatorio {
+  align-items: center;
+  background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
+  border: 0;
+  border-radius: 8px;
+  box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  display: flex;
+  font-family: Phantomsans, sans-serif;
+  font-size: 20px;
+  justify-content: center;
+  line-height: 1em;
+  width: 100%;
+  padding: 19px 24px;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.btnrelatorio:active,
+.btnrelatorio:hover {
+  outline: 0;
+}
+
+@media (min-width: 768px) {
+  .btnrelatorio {
+    font-size: 24px;
+    min-width: 196px;
+  }
+}
+
+
+.button-6 {
+    align-items: center;
+    background-color: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: .25rem;
+    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+    box-sizing: border-box;
+    color: rgba(0, 0, 0, 0.85);
+    cursor: pointer;
+    display: inline-flex;
+    font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 1.25;
+    margin: 0;
+    min-height: 3rem;
+    padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+    position: relative;
+    text-decoration: none;
+    transition: all 250ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+    width: auto;
+  }
+  
+  .button-6:hover,
+  .button-6:focus {
+    border-color: rgba(0, 0, 0, 0.15);
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+    color: rgba(0, 0, 0, 0.65);
+  }
+  
+  .button-6:hover {
+    transform: translateY(-1px);
+  }
+  
+  .button-6:active {
+    background-color: #F0F0F1;
+    border-color: rgba(0, 0, 0, 0.15);
+    box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+    color: rgba(0, 0, 0, 0.65);
+    transform: translateY(0);
+  }
+  

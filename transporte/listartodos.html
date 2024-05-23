@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Speed</title>
+        <link rel="shortcut icon" type="image/png" href="../images/icon.png">
+        <!--<link rel="stylesheet" href="css.css">-->
+        <link rel="stylesheet" href="../cssalternativo.css">
+        <link rel="stylesheet" href="../cssButton.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    </head>
+    <body>
+        <script src="../scriptTransporte.js"></script>
+
+        <div id="envolucro">
+
+            <!-- Cabecalho -->
+            <iframe src="../header.html" frameborder="0" width="100%" height="210px"></iframe>
+
+            <!-- Funcionalidades -->
+            <div id="barralateral">
+                <iframe src="barralateral.html" frameborder="0" width="280px" height="500px"></iframe>
+            </div>
+            
+            <!-- Main -->
+            <div class="principal">
+                
+                <h1>Transporte &middot; Listar Todos</h1>
+                <form>
+                    <h3>Filtragem</h3>
+                    <select name="iptTipo" id="iptSearch">
+                        <option value="Todos">Todos</option>
+                        <option value="placa">Placa</option>
+                        <option value="placa_cidade">Cidade do Veiculo</option>
+                        <option value="placa_estado">Estado</option>
+                        <option value="codigo">Código da Mercadoria</option>
+                        <option value="data_inicio">Data de Inicio</option>
+                        <option value="data_termino">Data de Término</option>
+                        <option value="trecho_inicio">Cidade de Inicio</option>
+                        <option value="trecho_termino">Cidade de Término</option>
+                        <option value="trecho_quilometros">Quilometragem</option>
+                    </select> :
+                    <input type="text" id="iptSearchText" name="iptSearchText">
+                </form>
+
+                
+                <br>
+                <button class="action" id="pesquisarTodos">Pesquisar</button>
+                <br><br>
+                <div id="conteudoListagem"></div>
+
+            </div>
+
+            <!-- Rodapé -->
+            <iframe src="../footer.html" frameborder="0" width="100%" height="100px"></iframe>
+        </div>
+        
+    </body>
+</html>
