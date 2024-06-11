@@ -3,7 +3,6 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 
 public class TransportePage {
     private final WebDriver driver;
@@ -12,12 +11,12 @@ public class TransportePage {
         this.driver = driver;
     }
 
-    public Select getVehicleDropdown() {
-        return new Select(driver.findElement(By.id("iptPlaca")));
+    public WebElement getPlateDropdown() {
+        return driver.findElement(By.id("iptPlaca"));
     }
 
-    public Select getMerchandiseDropdown() {
-        return new Select(driver.findElement(By.id("iptCodigo")));
+    public WebElement getCodeDropdown() {
+        return driver.findElement(By.id("iptCodigo"));
     }
 
     public WebElement getStartDateField() {
