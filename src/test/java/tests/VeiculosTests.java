@@ -3,6 +3,7 @@ package tests;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -22,10 +23,14 @@ public class VeiculosTests extends TesteBase {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         driver.get("https://site-vercel-tc1.vercel.app/index.html");
-        HomePage homePage = new HomePage(driver);
 
-        WebElement vehicleLink = homePage.getVehicleLink();
+        WebElement headerIframe = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//iframe[@src='header.html']")));
+        driver.switchTo().frame(headerIframe);
+
+        WebElement vehicleLink = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='veiculos/veiculos.html']")));
         vehicleLink.click();
+
+        driver.switchTo().defaultContent();
 
         VeiculosPage veiculosPage = new VeiculosPage(driver);
         veiculosPage.getLicensePlateField().sendKeys(faker.letterify("??????"));
@@ -54,4 +59,5 @@ public class VeiculosTests extends TesteBase {
         assertThat(alertText).isEqualTo(expectedText);
         alert.accept();
     }
+
 }
