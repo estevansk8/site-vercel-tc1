@@ -52,9 +52,12 @@ public class MercadoriasTests extends TesteBase {
 
         wait.until(ExpectedConditions.alertIsPresent());
         Alert alert = driver.switchTo().alert();
+        Thread.sleep(3000);
+
         String alertText = alert.getText();
         String expectedText = "Cadastrado com sucesso!";
         assertThat(alertText).isEqualTo(expectedText);
         alert.accept();
+        Thread.sleep(3000);
     }
 }
