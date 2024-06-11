@@ -17,10 +17,6 @@ public class HomePage {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    public void navigateToHomePage() {
-        driver.get("https://site-vercel-tc1.vercel.app/index.html");
-    }
-
     public WebElement getTransportLink() {
         return getLinkInHeader(By.xpath("//a[@href='transporte/transporte.html']"));
     }
@@ -61,5 +57,9 @@ public class HomePage {
         driver.switchTo().defaultContent();
 
         return link;
+    }
+
+    public void navigateToHomePage() {
+        driver.get("https://site-vercel-tc1.vercel.app/index.html");
     }
 }
