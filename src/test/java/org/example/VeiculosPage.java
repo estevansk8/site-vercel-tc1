@@ -1,14 +1,14 @@
 package org.example;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.Random;
 
-public class VeiculosPage extends Base{
+public class VeiculosPage extends Base {
 
-    public VeiculosPage(SafariDriver driver) {
+    public VeiculosPage(WebDriver driver) {
         super(driver);
     }
 
@@ -39,13 +39,12 @@ public class VeiculosPage extends Base{
     private final By speedXPath = By.xpath("//input[@id='iptVelocidade_maxima']");
     private final By insertXPath = By.xpath("//button[contains(text(),'Inserir')]");
 
-
-    public void goToVehicle(){
+    public void goToVehicle() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(veiculosButtonXPath));
         driver.findElement(veiculosButtonXPath).click();
     }
 
-    public void insertVehicleData(){
+    public void insertVehicleData() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(plateXPath));
         driver.findElement(plateXPath).sendKeys(plate);
         driver.findElement(cityXPath).sendKeys(city);
@@ -57,9 +56,7 @@ public class VeiculosPage extends Base{
         driver.findElement(speedXPath).sendKeys(speed);
     }
 
-    public void clickInsert(){
+    public void clickInsert() {
         driver.findElement(insertXPath).click();
     }
-
-
 }
