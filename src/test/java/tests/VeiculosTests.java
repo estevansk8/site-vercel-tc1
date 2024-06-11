@@ -3,6 +3,7 @@ package tests;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -23,10 +24,11 @@ public class VeiculosTests extends TesteBase {
         driver.get("https://site-vercel-tc1.vercel.app/index.html");
         HomePage homePage = new HomePage(driver);
 
-        homePage.getVehicleLink().click();
+        WebElement vehicleLink = homePage.getVehicleLink();
+        vehicleLink.click();
 
         VeiculosPage veiculosPage = new VeiculosPage(driver);
-        veiculosPage.getLicensePlateField().sendKeys(faker.bothify("???-####"));
+        veiculosPage.getLicensePlateField().sendKeys(faker.letterify("??????"));
         veiculosPage.getCityField().sendKeys(faker.address().city());
         veiculosPage.getStateField().sendKeys(faker.address().state());
 

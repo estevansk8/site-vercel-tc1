@@ -26,8 +26,6 @@ public class MercadoriasTests extends TesteBase {
     @Test
     @DisplayName("Should add a new merchandise")
     void shouldAddNewMerchandise() throws InterruptedException {
-        HomePage homePage = new HomePage(driver);
-
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement headerIframe = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//iframe[@src='header.html']")));
         driver.switchTo().frame(headerIframe);
