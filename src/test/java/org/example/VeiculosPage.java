@@ -1,12 +1,13 @@
 package org.example;
 
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.By;
+import org.openqa.selenium.safari.SafariDriver;
 
 import java.util.Random;
 
 public class VeiculosPage extends Base{
 
-    public VeiculosPage(WebDriver driver) {
+    public VeiculosPage(SafariDriver driver) {
         super(driver);
     }
 
@@ -22,6 +23,19 @@ public class VeiculosPage extends Base{
     int year = anoInicio + random.nextInt(anoFim - anoInicio + 1);
     String color = faker.color().name();
     String speed = faker.bothify("###");
+
+    By plateXPath = By.xpath("//input[@id='iptPlaca']");
+    By cityXPath = By.xpath("//input[@id='iptCidade']");
+    By stateXPath = By.xpath("//input[@id='iptEstado']");
+    By typeXPath = By.xpath("//select[@id='iptTipo']");
+    By makeXPath = By.xpath("//input[@id='iptMarca']");
+    By modelXPath = By.xpath("//input[@id='iptModelo']");
+    By yearXPath = By.xpath("//input[@id='iptAno']");
+    By fuelXPath = By.xpath("//select[@id='iptCombustiveis']");
+    By colorXPath = By.xpath("//input[@id='iptCor']");
+    By speedXPath = By.xpath("//input[@id='iptVelocidade_maxima']");
+    By insertXPath = By.xpath("//button[contains(text(),'Inserir')]");
+
 
 
 }
