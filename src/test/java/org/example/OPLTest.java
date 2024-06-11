@@ -15,46 +15,61 @@ public class OPLTest {
 
     @BeforeEach
     public void setUp() {
-        // Especifique o caminho para o ChromeDriver se necessário
-        System.setProperty("webdriver.chrome.driver", "/caminho/para/chromedriver");
-        driver = new ChromeDriver();
-        driver.get("file:///caminho/para/seu/arquivo/image.png"); // Caminho para o arquivo HTML local
+        initializeWebDriver();
+        navigateToBaseUrl();
     }
 
     @AfterEach
     public void tearDown() {
+        closeWebDriver();
+    }
+
+    @Test
+    public void testInserirMercadoria() {
+        fillInFormWithTestData();
+        submitForm();
+        verifySuccessMessage();
+    }
+
+    private void initializeWebDriver() {
+        System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
+        driver = new ChromeDriver();
+    }
+
+    private void navigateToBaseUrl() {
+        String BASE_URL = "https://site-vercel-tc1.vercel.app/mercadorias/mercadorias.html";
+        driver.get(BASE_URL);
+    }
+
+    private void closeWebDriver() {
         if (driver != null) {
             driver.quit();
         }
     }
 
-    @Test
-    public void testInserirMercadoria() {
-        // Localize os elementos do formulário e preencha-os
-        WebElement codigo = driver.findElement(By.name("codigo"));
-        WebElement descricao = driver.findElement(By.name("descricao"));
-        WebElement validade = driver.findElement(By.name("validade"));
-        WebElement peso = driver.findElement(By.name("peso"));
-        WebElement altura = driver.findElement(By.name("altura"));
-        WebElement largura = driver.findElement(By.name("largura"));
-        WebElement volume = driver.findElement(By.name("volume"));
-        WebElement fragilidade = driver.findElement(By.name("fragilidade"));
+    private void fillInFormWithTestData() {
+        setInputFieldByName("codigo", "12345");
+        setInputFieldByName("descricao", "Teste de mercadoria");
+        setInputFieldByName("validade", "12/31/2024");
+        setInputFieldByName("peso", "10");
+        setInputFieldByName("altura", "20");
+        setInputFieldByName("largura", "30");
+        setInputFieldByName("volume", "6000");
+        setInputFieldByName("fragilidade", "Frágil");
+    }
 
-        codigo.sendKeys("12345");
-        descricao.sendKeys("Teste de mercadoria");
-        validade.sendKeys("12/31/2024");
-        peso.sendKeys("10");
-        altura.sendKeys("20");
-        largura.sendKeys("30");
-        volume.sendKeys("6000");
-        fragilidade.sendKeys("Frágil");
+    private void setInputFieldByName(String fieldName, String value) {
+        WebElement field = driver.findElement(By.name(fieldName));
+        field.sendKeys(value);
+    }
 
-        WebElement inserirButton = driver.findElement(By.cssSelector("button[type='submit']"));
-        inserirButton.click();
+    private void submitForm() {
+        WebElement submitButton = driver.findElement(By.cssSelector("button[type='submit']"));
+        submitButton.click();
+    }
 
-        // Verifique o resultado esperado (depende do comportamento da sua aplicação)
-        WebElement resultado = driver.findElement(By.id("resultado"));
-        assertEquals("Mercadoria inserida com sucesso!", resultado.getText());
+    private void verifySuccessMessage() {
+        WebElement successMessage = driver.findElement(By.id("resultado"));
+        assertEquals("Mercadoria inserida com sucesso!", successMessage.getText());
     }
 }
-
