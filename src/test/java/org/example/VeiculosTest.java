@@ -3,6 +3,7 @@ package org.example;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
@@ -35,5 +36,19 @@ public class VeiculosTest {
         if (driver != null) {
             driver.quit();
         }
+    }
+
+    @Test
+    @DisplayName("Should insert new vehicle and get success alert")
+    public void shouldInsertNewVehicle() {
+        veiculosPage.insertVehicleData();
+        veiculosPage.clickInsert();
+        wait.until(ExpectedConditions.alertIsPresent());
+
+        Alert alert = driver.switchTo().alert();
+        String textAlert = alert.getText();
+        alert.accept();
+
+        assertEquals("Cadastrado com sucesso!", textAlert);
     }
 }
