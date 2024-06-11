@@ -26,11 +26,14 @@ public class OPLTest {
     @BeforeEach
     public void setUp() {
         System.out.println("Setting up driver");
-
-        System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver/chrome-linux64/chrome");
-
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
+        System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver/chrome-linux64/chrome");
+        driver = new ChromeDriver(options);
+
+        driver.get("https://site-vercel-tc1.vercel.app/index.html");
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        faker = new Faker();
     }
 
     @AfterEach
