@@ -17,6 +17,20 @@ public class HomePage {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
+    public void navigateToHomePage() {
+        driver.get("https://site-vercel-tc1.vercel.app/index.html");
+    }
+
+    private WebElement getLinkInHeader(By by) {
+        WebElement headerIframe = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//iframe[@src='header.html']")));
+        driver.switchTo().frame(headerIframe);
+
+        WebElement link = wait.until(ExpectedConditions.elementToBeClickable(by));
+        driver.switchTo().defaultContent();
+
+        return link;
+    }
+
     public WebElement getTransportLink() {
         return getLinkInHeader(By.xpath("//a[@href='transporte/transporte.html']"));
     }
@@ -47,19 +61,5 @@ public class HomePage {
 
     public WebElement getListOneMerchandiseLink() {
         return getLinkInHeader(By.xpath("//a[@href='mercadorias/listarum.html']"));
-    }
-
-    private WebElement getLinkInHeader(By by) {
-        WebElement headerIframe = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//iframe[@src='header.html']")));
-        driver.switchTo().frame(headerIframe);
-
-        WebElement link = wait.until(ExpectedConditions.elementToBeClickable(by));
-        driver.switchTo().defaultContent();
-
-        return link;
-    }
-
-    public void navigateToHomePage() {
-        driver.get("https://site-vercel-tc1.vercel.app/index.html");
     }
 }
