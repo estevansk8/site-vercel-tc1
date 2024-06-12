@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -72,5 +73,26 @@ public class VeiculosTest {
         alert2.accept();
 
         assertEquals("Placa já cadastrada", textAlert);
+    }
+
+    @Test
+    @DisplayName("Should go to List All page and list vehicles")
+    public void shouldListVehicles() throws InterruptedException {
+        veiculosPage.insertVehicleData();
+        veiculosPage.clickInsert();
+        wait.until(ExpectedConditions.alertIsPresent());
+
+        Alert alert = driver.switchTo().alert();
+        alert.accept();
+
+        veiculosPage.clickList();
+        veiculosPage.clickSearch();
+
+        Thread.sleep(5000);
+
+        final By listedVehiclesHeader = By.xpath("//*[@id=\"conteudoListagem\"]/div/div[1]");
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(listedVehiclesHeader));
+        assertTrue(driver.findElement(listedVehiclesHeader).isDisplayed(), "Listed vehicles header should be displayed after search");
     }
 }
