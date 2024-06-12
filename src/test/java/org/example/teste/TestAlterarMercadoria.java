@@ -102,20 +102,15 @@ public class TestAlterarMercadoria {
 
         // Insert new Mercadoria
         mercadoriaPage.InsertMercadoria(codigo, descricao, validade, altura, fragilidade, peso, volume, largura);
-
-        // Wait for success alert
         mercadoriaPage.waitForAlertAndAccept();
 
-        // Generate new data for update
         String updatePeso = TestDataGenerator.generatePeso();
         String updateAltura = TestDataGenerator.generateAltura();
         String updateLargura = TestDataGenerator.generateLargura();
         String updateVolume = TestDataGenerator.generateVolume();
 
-        // Click "Alterar" and update Mercadoria
         mercadoriaPage.clickAlterar();
-        
-        // Fill and submit the update form
+
         mercadoriaPage.fillForm(codigo, descricao, altura, fragilidade, updateLargura, updatePeso, updateVolume, updateAltura);
         mercadoriaPage.submitForm();
         try {
@@ -124,7 +119,6 @@ public class TestAlterarMercadoria {
             e.printStackTrace();
         }
 
-        // Wait for success alert after update
         String updateAlertText = mercadoriaPage.waitForAlertAndGetText();
         assertThat(updateAlertText).isEqualTo("Alterado com sucesso!");
     }
