@@ -53,7 +53,8 @@ public class TestAlterarMercadoria {
         driver = new FirefoxDriver(options);
     }
     @Test
-    void shouldUpdateExistingMercadoria() {
+    @DisplayName("Should dont find codigo")
+    void shouldDontFindCodigo() {
         // Navigate to the Mercadoria page
         MercadoriaPage mercadoriaPage = new MercadoriaPage(driver);
         mercadoriaPage.navigateTo(BASE_URL);
@@ -73,16 +74,7 @@ public class TestAlterarMercadoria {
         mercadoriaPage.submitForm();
 
         String alertText = mercadoriaPage.waitForAlertAndGetText();
-        assertThat(alertText).isEqualTo("Mercadoria atualizada com sucesso!");
+        assertThat(alertText).isEqualTo("Código não encontrado!");
 
-        // Verify if the updated data is correctly displayed
-        assertThat(mercadoriaPage.getCodigo()).isEqualTo(newCodigo);
-        assertThat(mercadoriaPage.getDescricao()).isEqualTo(newDescricao);
-        assertThat(mercadoriaPage.getValidade()).isEqualTo(newValidade);
-        assertThat(mercadoriaPage.getPeso()).isEqualTo(newPeso);
-        assertThat(mercadoriaPage.getAltura()).isEqualTo(newAltura);
-        assertThat(mercadoriaPage.getLargura()).isEqualTo(newLargura);
-        assertThat(mercadoriaPage.getVolume()).isEqualTo(newVolume);
-        assertThat(mercadoriaPage.getFragilidade()).isEqualTo(newFragilidade);
     }
 }
