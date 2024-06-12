@@ -1,45 +1,71 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class TransportePage {
-    private final WebDriver driver;
+    WebDriver driver;
+
+    @FindBy(id = "iptPlaca")
+    WebElement plateDropdown;
+
+    @FindBy(id = "iptCodigo")
+    WebElement codeDropdown;
+
+    @FindBy(id = "iptDataInicio")
+    WebElement startDateField;
+
+    @FindBy(id = "iptDataTermino")
+    WebElement endDateField;
+
+    @FindBy(id = "iptCidadeInicio")
+    WebElement startCityField;
+
+    @FindBy(id = "iptCidadeTermino")
+    WebElement endCityField;
+
+    @FindBy(id = "iptQuilometros")
+    WebElement kilometersField;
+
+    @FindBy(id = "inserirTransporte")
+    WebElement insertButton;
 
     public TransportePage(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
     public WebElement getPlateDropdown() {
-        return driver.findElement(By.id("iptPlaca"));
+        return plateDropdown;
     }
 
     public WebElement getCodeDropdown() {
-        return driver.findElement(By.id("iptCodigo"));
+        return codeDropdown;
     }
 
     public WebElement getStartDateField() {
-        return driver.findElement(By.id("iptDataInicio"));
+        return startDateField;
     }
 
     public WebElement getEndDateField() {
-        return driver.findElement(By.id("iptDataTermino"));
+        return endDateField;
     }
 
     public WebElement getStartCityField() {
-        return driver.findElement(By.id("iptCidadeInicio"));
+        return startCityField;
     }
 
     public WebElement getEndCityField() {
-        return driver.findElement(By.id("iptCidadeTermino"));
+        return endCityField;
     }
 
     public WebElement getKilometersField() {
-        return driver.findElement(By.id("iptQuilometros"));
+        return kilometersField;
     }
 
     public WebElement getInsertButton() {
-        return driver.findElement(By.id("inserirTransporte"));
+        return insertButton;
     }
 }
