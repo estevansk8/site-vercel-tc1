@@ -4,10 +4,11 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.example.pages.MercadoriaPage;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.io.File;
 
 public class TestInsertMercadoria {
 
@@ -22,46 +23,41 @@ public class TestInsertMercadoria {
 
     @BeforeEach
     void setup() {
-        driver = new FirefoxDriver();
+        TestConnection();
         mercadoriaPage = new MercadoriaPage(driver);
-        driver.get(BASE_URL);
     }
 
     @AfterEach
     void tearDown() {
-        driver.quit();
+        if (driver != null) {
+            driver.quit();
+        }
     }
-
-
     @Test
-    public void testInserirMercadoria() {
+    @DisplayName("Should submit mercadoria form")
+    public void ShouldSubmitMercadoriaForm() {
         mercadoriaPage.navigateTo(BASE_URL);
-        mercadoriaPage.setCodigo("12345");
-        mercadoriaPage.setDescricao("Teste de mercadoria");
-        mercadoriaPage.setDate("2024-12-31");
-        mercadoriaPage.setPeso("10");
-        mercadoriaPage.setAltura("20");
-        mercadoriaPage.setLargura("30");
-        mercadoriaPage.setVolume("6000");
-        mercadoriaPage.setFragilidade("Frágil");
-
+        mercadoriaPage.fillForm("12345", "Teste de mercadoria", "2024-12-31", "10", "20", "30", "6000", "Frágil");
         mercadoriaPage.submitForm();
 
-        String resultado = mercadoriaPage.getResultadoText();
-        assertEquals("Mercadoria inserida com sucesso!", resultado);
+    }
+    public void TestConnection() {
+        String firefoxBinaryPath = "/snap/firefox/current/usr/lib/firefox/firefox";
+        String geckoDriverPath = "/snap/firefox/current/usr/lib/firefox/geckodriver";
+        FirefoxBinary firefoxBinary = new FirefoxBinary(new File(firefoxBinaryPath));
+        System.setProperty("webdriver.gecko.driver", geckoDriverPath);
+        FirefoxOptions options = new FirefoxOptions();
+        options.setBinary(firefoxBinary);
+        driver = new FirefoxDriver(options);
     }
 
     @Test
-    @DisplayName("Should not accept non-numeric values in peso field")
-    public void shouldNotAcceptNonNumericValuesInPesoField() {
-        mercadoriaPage.navigateTo(BASE_URL);
-        mercadoriaPage.clickMercadoriasButton();
-        mercadoriaPage.setPeso("abc");
-
-        // Tentar submeter o formulário e verificar a mensagem de erro esperada
+    @DisplayName("Should show error when inserting non-numeric value in weight field")
+    public void shouldShowErrorForNonNumericWeight() {
+        mercadoriaPage.fillForm("12345", "Teste de mercadoria", "2024-12-31", "invalidWeight", "20", "30", "6000", "Frágil");
         mercadoriaPage.submitForm();
 
-        String resultado = mercadoriaPage.getResultadoText();
-        assertTrue(resultado.contains("Erro: Peso deve ser um valor numérico"));
+        String alertText = mercadoriaPage.waitForAlertAndGetText();
+        Assertions.assertEquals("Erro: Peso deve ser um valor numérico", alertText);
     }
 }

@@ -2,6 +2,11 @@ package org.example.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+
 public class MercadoriaPage extends BasePage {
 
     private By mercadoriasButton = By.cssSelector("a[href*='mercadorias/mercadorias.html']");
@@ -14,7 +19,6 @@ public class MercadoriaPage extends BasePage {
     private By volumeInput = By.name("Volume");
     private By fragilidadeInput = By.name("fragilidade");
     private By submitButton = By.className("action");
-    private By resultadoText = By.id("resultado");
 
 
     public MercadoriaPage(WebDriver driver) {
@@ -80,9 +84,19 @@ public class MercadoriaPage extends BasePage {
         WebElement submitBtn = driver.findElement(submitButton);
         submitBtn.click();
     }
-
-    public String getResultadoText() {
-        waitForElement(resultadoText);
-        return driver.findElement(resultadoText).getText();
+    public void fillForm(String codigo, String descricao, String validade, String peso, String altura, String largura, String volume, String fragilidade) {
+        setDescricao(descricao);
+        setAltura(altura);
+        setLargura(largura);
+        setVolume(volume);
+        setFragilidade(fragilidade);
+        setPeso(peso);
+        setCodigo(codigo);
+        setDate(validade);
     }
+    public String waitForAlertAndGetText() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        return wait.until(ExpectedConditions.alertIsPresent()).getText();
+    }
+
 }
