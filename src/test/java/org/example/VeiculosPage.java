@@ -27,6 +27,7 @@ public class VeiculosPage extends Base {
     String speed = faker.bothify("###");
 
     private final By veiculosButtonXPath = By.xpath("//button[contains(text(),'Veiculos')]");
+    private final By sideBariFrame = By.xpath("//*[@id=\"barralateral\"]/iframe");
     private final By listXPath = By.xpath("/html/body/ul/li[4]/a");
     private final By searchXPath = By.xpath("//*[@id=\"envolucro\"]/div[2]/button");
     private final By deleteXPath = By.xpath("/html/body/ul/li[3]/a");
