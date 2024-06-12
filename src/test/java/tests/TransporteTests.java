@@ -747,4 +747,108 @@ public class TransporteTests extends TesteBase {
         WebElement transportCard = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='conteudoListagemAlterar']/div[@class='card']")));
         assertThat(transportCard.getText()).contains("Placa: " + vehiclePlate1 + " - Código: " + merchandiseCode1);
     }
+    @Test
+    @DisplayName("Should detect error when registering transport with empty plate field")
+    void shouldDetectErrorWithEmptyPlateField() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+        WebElement headerIframe = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("/html/body/div/iframe[1]")));
+        driver.switchTo().frame(headerIframe);
+
+        WebElement link = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='menu']/button[1]/a")));
+        link.click();
+        driver.switchTo().defaultContent();
+
+        MercadoriasPage mercadoriasPage = new MercadoriasPage(driver);
+        String merchandiseCode = faker.number().digits(6);
+        mercadoriasPage.getCodeField().sendKeys(merchandiseCode);
+        mercadoriasPage.getDescriptionField().sendKeys(faker.commerce().productName());
+        mercadoriasPage.getExpirationDateField().sendKeys("2023-12-31");
+        mercadoriasPage.getWeightField().sendKeys("10");
+        mercadoriasPage.getHeightField().sendKeys("100");
+        mercadoriasPage.getWidthField().sendKeys("50");
+        mercadoriasPage.getVolumeField().sendKeys("5000");
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("fragilidade")));
+        WebElement fragilityDropdown = driver.findElement(By.id("fragilidade"));
+        Select selectFragility = new Select(fragilityDropdown);
+        selectFragility.selectByVisibleText("Fragíl");
+
+        WebElement insertButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='envolucro']/div[2]/button")));
+        insertButton.click();
+
+        wait.until(ExpectedConditions.alertIsPresent());
+        Alert alert = driver.switchTo().alert();
+        String alertText = alert.getText();
+        String expectedText = "Cadastrado com sucesso!";
+        assertThat(alertText).isEqualTo(expectedText);
+        alert.accept();
+
+        headerIframe = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("/html/body/div/iframe[1]")));
+        driver.switchTo().frame(headerIframe);
+
+        link = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='menu']/button[2]/a")));
+        link.click();
+        driver.switchTo().defaultContent();
+
+        VeiculosPage veiculosPage = new VeiculosPage(driver);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("iptPlaca"))).sendKeys("");
+        veiculosPage.getCityField().sendKeys(faker.address().city());
+        veiculosPage.getStateField().sendKeys(faker.address().state());
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("iptTipo")));
+        WebElement typeDropdown = driver.findElement(By.id("iptTipo"));
+        Select selectType = new Select(typeDropdown);
+        selectType.selectByVisibleText("Urbano");
+
+        veiculosPage.getBrandField().sendKeys(faker.company().name());
+        veiculosPage.getModelField().sendKeys(faker.aviation().aircraft());
+        veiculosPage.getYearField().sendKeys(faker.number().digits(4));
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("iptCombustiveis")));
+        WebElement fuelDropdown = driver.findElement(By.id("iptCombustiveis"));
+        Select selectFuel = new Select(fuelDropdown);
+        selectFuel.selectByVisibleText("Gasolina");
+
+        veiculosPage.getColorField().sendKeys(faker.color().name());
+        veiculosPage.getMaxSpeedField().sendKeys(faker.number().digits(3));
+
+        veiculosPage.getInsertButton().click();
+
+        wait.until(ExpectedConditions.alertIsPresent());
+        alert = driver.switchTo().alert();
+        alertText = alert.getText();
+        expectedText = "Cadastrado com sucesso!";
+        assertThat(alertText).isEqualTo(expectedText);
+        alert.accept();
+
+        headerIframe = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("/html/body/div/iframe[1]")));
+        driver.switchTo().frame(headerIframe);
+
+        link = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='menu']/button[3]/a")));
+        link.click();
+        driver.switchTo().defaultContent();
+
+        TransportePage transportePage = new TransportePage(driver);
+        Select plateDropdown = new Select(transportePage.getPlateDropdown());
+        plateDropdown.selectByVisibleText("");
+
+        Select codeDropdown = new Select(transportePage.getCodeDropdown());
+        codeDropdown.selectByVisibleText(merchandiseCode);
+
+        transportePage.getStartDateField().sendKeys("28052024");
+        transportePage.getEndDateField().sendKeys("10062024");
+        transportePage.getStartCityField().sendKeys(faker.address().city());
+        transportePage.getEndCityField().sendKeys(faker.address().city());
+        transportePage.getKilometersField().sendKeys(faker.number().digits(3));
+
+        transportePage.getInsertButton().click();
+
+        wait.until(ExpectedConditions.alertIsPresent());
+        alert = driver.switchTo().alert();
+        alertText = alert.getText();
+        String expectedErrorMessage = "Placa não pode estar vazia!";
+        assertThat(alertText).isEqualTo(expectedErrorMessage);
+        alert.accept();
+    }
 }
