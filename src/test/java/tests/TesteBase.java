@@ -21,7 +21,7 @@ public class TesteBase {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
 
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\User\\Downloads\\chromedriver-win64\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
 
         driver = new ChromeDriver(options);
         driver.get("https://site-vercel-tc1.vercel.app/index.html");
