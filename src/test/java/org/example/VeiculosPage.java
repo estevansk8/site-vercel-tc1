@@ -56,6 +56,18 @@ public class VeiculosPage extends Base {
         driver.findElement(speedXPath).sendKeys(speed);
     }
 
+    public void insertVehicleDataKnowingPlate() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(plateXPath));
+        driver.findElement(plateXPath).sendKeys("EWQ9640");
+        driver.findElement(cityXPath).sendKeys(city);
+        driver.findElement(stateXPath).sendKeys(state);
+        driver.findElement(makeXPath).sendKeys(make);
+        driver.findElement(modelXPath).sendKeys(model);
+        driver.findElement(yearXPath).sendKeys(year);
+        driver.findElement(colorXPath).sendKeys(color);
+        driver.findElement(speedXPath).sendKeys(speed);
+    }
+
     public void clickInsert() {
         driver.findElement(insertXPath).click();
     }
