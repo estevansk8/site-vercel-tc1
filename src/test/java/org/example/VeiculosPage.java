@@ -29,6 +29,8 @@ public class VeiculosPage extends Base {
     private final By veiculosButtonXPath = By.xpath("//button[contains(text(),'Veiculos')]");
     private final By listXPath = By.xpath("/html/body/ul/li[4]/a");
     private final By searchXPath = By.xpath("//*[@id=\"envolucro\"]/div[2]/button");
+    private final By deleteXPath = By.xpath("/html/body/ul/li[3]/a");
+    private final By deleteItemXPath = By.xpath("//*[@id=\"envolucro\"]/div[2]/button");
     private final By plateXPath = By.xpath("//input[@id='iptPlaca']");
     private final By cityXPath = By.xpath("//input[@id='iptCidade']");
     private final By stateXPath = By.xpath("//input[@id='iptEstado']");
@@ -81,5 +83,14 @@ public class VeiculosPage extends Base {
     public void clickSearch(){
         wait.until(ExpectedConditions.visibilityOfElementLocated(searchXPath));
         driver.findElement(searchXPath).click();
+    }
+
+    public void clickDelete(){
+        driver.findElement(deleteXPath).click();
+    }
+
+    public void clickDeleteItem(){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(deleteItemXPath));
+        driver.findElement(deleteItemXPath).click();
     }
 }
