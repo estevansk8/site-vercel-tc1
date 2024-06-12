@@ -89,6 +89,53 @@ public class MercadoriaPage extends BasePage {
         WebElement fragilidadeField = driver.findElement(fragilidadeInput);
         fragilidadeField.sendKeys(fragilidade);
     }
+    public String getCodigo() {
+        waitForElement(codigoInput);
+        WebElement codigoField = driver.findElement(codigoInput);
+        return codigoField.getAttribute("value");
+    }
+
+    public String getDescricao() {
+        waitForElement(descricaoInput);
+        WebElement descricaoField = driver.findElement(descricaoInput);
+        return descricaoField.getAttribute("value");
+    }
+
+    public String getValidade() {
+        waitForElement(dateInput);
+        WebElement validadeField = driver.findElement(dateInput);
+        return validadeField.getAttribute("value");
+    }
+
+    public String getPeso() {
+        waitForElement(pesoInput);
+        WebElement pesoField = driver.findElement(pesoInput);
+        return pesoField.getAttribute("value");
+    }
+
+    public String getAltura() {
+        waitForElement(alturaInput);
+        WebElement alturaField = driver.findElement(alturaInput);
+        return alturaField.getAttribute("value");
+    }
+
+    public String getLargura() {
+        waitForElement(larguraInput);
+        WebElement larguraField = driver.findElement(larguraInput);
+        return larguraField.getAttribute("value");
+    }
+
+    public String getVolume() {
+        waitForElement(volumeInput);
+        WebElement volumeField = driver.findElement(volumeInput);
+        return volumeField.getAttribute("value");
+    }
+
+    public String getFragilidade() {
+        waitForElement(fragilidadeInput);
+        WebElement fragilidadeField = driver.findElement(fragilidadeInput);
+        return fragilidadeField.getAttribute("value");
+    }
 
     public void submitForm() {
         waitForElement(submitButton);
