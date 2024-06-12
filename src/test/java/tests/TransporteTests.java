@@ -118,4 +118,58 @@ public class TransporteTests extends TesteBase {
         assertThat(alertText).isEqualTo(expectedText);
         alert.accept();
     }
+    @Test
+    @DisplayName("Should update an existing transport")
+    void shouldUpdateExistingTransport() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+        WebElement headerIframe = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("/html/body/div/iframe[1]")));
+        driver.switchTo().frame(headerIframe);
+
+        WebElement link = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='menu']/button[3]/a")));
+        link.click();
+        driver.switchTo().defaultContent();
+
+        TransportePage transportePage = new TransportePage(driver);
+
+        Select transportDropdown = new Select(transportePage.getTransportDropdown());
+        transportDropdown.selectByIndex(0);
+
+        String newStartDate = "2024-07-01";
+        String newEndDate = "2024-07-10";
+        String newStartCity = faker.address().city();
+        String newEndCity = faker.address().city();
+        String newKilometers = faker.number().digits(3);
+
+        transportePage.getStartDateField().clear();
+        transportePage.getStartDateField().sendKeys(newStartDate);
+        transportePage.getEndDateField().clear();
+        transportePage.getEndDateField().sendKeys(newEndDate);
+        transportePage.getStartCityField().clear();
+        transportePage.getStartCityField().sendKeys(newStartCity);
+        transportePage.getEndCityField().clear();
+        transportePage.getEndCityField().sendKeys(newEndCity);
+        transportePage.getKilometersField().clear();
+        transportePage.getKilometersField().sendKeys(newKilometers);
+
+        WebElement updateButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("updateTransport")));
+        updateButton.click();
+
+        wait.until(ExpectedConditions.alertIsPresent());
+        Alert alert = driver.switchTo().alert();
+        String alertText = alert.getText();
+        String expectedText = "Transporte atualizado com sucesso!";
+        assertThat(alertText).isEqualTo(expectedText);
+        alert.accept();
+
+        transportDropdown = new Select(transportePage.getTransportDropdown());
+        transportDropdown.selectByIndex(0); // Seleciona novamente o primeiro transporte
+
+        assertThat(transportePage.getStartDateField().getAttribute("value")).isEqualTo(newStartDate);
+        assertThat(transportePage.getEndDateField().getAttribute("value")).isEqualTo(newEndDate);
+        assertThat(transportePage.getStartCityField().getAttribute("value")).isEqualTo(newStartCity);
+        assertThat(transportePage.getEndCityField().getAttribute("value")).isEqualTo(newEndCity);
+        assertThat(transportePage.getKilometersField().getAttribute("value")).isEqualTo(newKilometers);
+    }
+
 }
