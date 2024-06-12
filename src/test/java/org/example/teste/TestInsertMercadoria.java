@@ -73,10 +73,8 @@ public class TestInsertMercadoria {
     @Test
     @DisplayName("Should reject negative values in mercadoria form")
     public void shouldRejectNegativeValuesInMercadoriaForm() {
-        // Navegar para a página de formulário de mercadoria
         mercadoriaPage.navigateTo(BASE_URL);
 
-        // Preencher o formulário com valores negativos
         String codigo = TestDataGenerator.generateCodigo();
         String descricao = faker.commerce().productName();
         String validade = "12/31/2024";
@@ -107,7 +105,6 @@ public class TestInsertMercadoria {
     @Test
     @DisplayName("Should reject blank code in mercadoria form")
     public void shouldRejectBlankCodeInMercadoriaForm() {
-        // Navigate to the mercadoria form page
         mercadoriaPage.navigateTo(BASE_URL);
 
         String codigo = "";
@@ -127,7 +124,7 @@ public class TestInsertMercadoria {
             e.printStackTrace();
         }
         // Verify if an error message is displayed
-        String errorMessage = mercadoriaPage.getErrorMessage(); // Fictional method to get error message, depends on implementation of page
+        String errorMessage = mercadoriaPage.getErrorMessage();
 
         assertTrue(errorMessage.contains("Code cannot be blank"), "Expected error when submitting form with blank code");
     }
