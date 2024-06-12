@@ -54,6 +54,7 @@ public class TestInsertMercadoria {
     @Test
     @DisplayName("Should show error when inserting non-numeric value in weight field")
     public void shouldShowErrorForNonNumericWeight() {
+        mercadoriaPage.navigateTo(BASE_URL);
         mercadoriaPage.fillForm("12345", "Teste de mercadoria", "2024-12-31", "invalidWeight", "20", "30", "6000", "Frágil");
         mercadoriaPage.submitForm();
 
