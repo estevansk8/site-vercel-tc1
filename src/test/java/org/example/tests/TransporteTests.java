@@ -1,14 +1,14 @@
-package tests;
+package org.example.tests;
 
+import org.example.pages.VeiculoPage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pages.MercadoriasPage;
-import pages.VeiculoPage;
-import pages.TransportePage;
+import org.example.pages.MercadoriasPage;
+import org.example.pages.TransportePage;
 
 import java.time.Duration;
 import java.util.List;

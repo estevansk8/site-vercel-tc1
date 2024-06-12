@@ -1,5 +1,6 @@
-package tests;
+package org.example.tests;
 
+import org.example.pages.VeiculoPage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Alert;
@@ -8,7 +9,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pages.VeiculoPage;
 
 import java.time.Duration;
 

@@ -1,4 +1,4 @@
-package tests;
+package org.example.tests;
 
 import com.github.javafaker.Faker;
 import io.github.bonigarcia.wdm.WebDriverManager;
