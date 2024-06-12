@@ -8,14 +8,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pages.HomePage;
-import pages.VeiculosPage;
+import pages.VeiculoPage;
 
 import java.time.Duration;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class VeiculosTests extends TesteBase {
+public class VeiculoTests extends TesteBase {
 
     @Test
     @DisplayName("Should add a new vehicle")
@@ -32,25 +31,25 @@ public class VeiculosTests extends TesteBase {
 
         driver.switchTo().defaultContent();
 
-        VeiculosPage veiculosPage = new VeiculosPage(driver);
-        veiculosPage.getLicensePlateField().sendKeys(faker.letterify("??????"));
-        veiculosPage.getCityField().sendKeys(faker.address().city());
-        veiculosPage.getStateField().sendKeys(faker.address().state());
+        VeiculoPage veiculoPage = new VeiculoPage(driver);
+        veiculoPage.getLicensePlateField().sendKeys(faker.letterify("??????"));
+        veiculoPage.getCityField().sendKeys(faker.address().city());
+        veiculoPage.getStateField().sendKeys(faker.address().state());
 
-        Select selectType = new Select(veiculosPage.getTypeDropdown());
+        Select selectType = new Select(veiculoPage.getTypeDropdown());
         selectType.selectByVisibleText("Urbano");
 
-        veiculosPage.getBrandField().sendKeys(faker.company().name());
-        veiculosPage.getModelField().sendKeys(faker.aviation().aircraft());
-        veiculosPage.getYearField().sendKeys(faker.number().digits(4));
+        veiculoPage.getBrandField().sendKeys(faker.company().name());
+        veiculoPage.getModelField().sendKeys(faker.aviation().aircraft());
+        veiculoPage.getYearField().sendKeys(faker.number().digits(4));
 
-        Select selectFuel = new Select(veiculosPage.getFuelDropdown());
+        Select selectFuel = new Select(veiculoPage.getFuelDropdown());
         selectFuel.selectByVisibleText("Gasolina");
 
-        veiculosPage.getColorField().sendKeys(faker.color().name());
-        veiculosPage.getMaxSpeedField().sendKeys(faker.number().digits(3));
+        veiculoPage.getColorField().sendKeys(faker.color().name());
+        veiculoPage.getMaxSpeedField().sendKeys(faker.number().digits(3));
 
-        veiculosPage.getInsertButton().click();
+        veiculoPage.getInsertButton().click();
 
         wait.until(ExpectedConditions.alertIsPresent());
         Alert alert = driver.switchTo().alert();

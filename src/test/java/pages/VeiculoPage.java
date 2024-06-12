@@ -4,10 +4,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class VeiculosPage {
+public class VeiculoPage {
     private final WebDriver driver;
 
-    public VeiculosPage(WebDriver driver) {
+    public VeiculoPage(WebDriver driver) {
         this.driver = driver;
     }
 

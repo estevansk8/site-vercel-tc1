@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.MercadoriasPage;
-import pages.VeiculosPage;
+import pages.VeiculoPage;
 import pages.TransportePage;
 
 import java.time.Duration;
@@ -60,26 +60,26 @@ public class TransporteTests extends TesteBase {
         link.click();
         driver.switchTo().defaultContent();
 
-        VeiculosPage veiculosPage = new VeiculosPage(driver);
+        VeiculoPage veiculoPage = new VeiculoPage(driver);
         String vehiclePlate = faker.letterify("??????");
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("iptPlaca"))).sendKeys(vehiclePlate);
-        veiculosPage.getCityField().sendKeys(faker.address().city());
-        veiculosPage.getStateField().sendKeys(faker.address().state());
+        veiculoPage.getCityField().sendKeys(faker.address().city());
+        veiculoPage.getStateField().sendKeys(faker.address().state());
 
-        Select selectType = new Select(veiculosPage.getTypeDropdown());
+        Select selectType = new Select(veiculoPage.getTypeDropdown());
         selectType.selectByVisibleText("Urbano");
 
-        veiculosPage.getBrandField().sendKeys(faker.company().name());
-        veiculosPage.getModelField().sendKeys(faker.aviation().aircraft());
-        veiculosPage.getYearField().sendKeys(faker.number().digits(4));
+        veiculoPage.getBrandField().sendKeys(faker.company().name());
+        veiculoPage.getModelField().sendKeys(faker.aviation().aircraft());
+        veiculoPage.getYearField().sendKeys(faker.number().digits(4));
 
-        Select selectFuel = new Select(veiculosPage.getFuelDropdown());
+        Select selectFuel = new Select(veiculoPage.getFuelDropdown());
         selectFuel.selectByVisibleText("Gasolina");
 
-        veiculosPage.getColorField().sendKeys(faker.color().name());
-        veiculosPage.getMaxSpeedField().sendKeys(faker.number().digits(3));
+        veiculoPage.getColorField().sendKeys(faker.color().name());
+        veiculoPage.getMaxSpeedField().sendKeys(faker.number().digits(3));
 
-        veiculosPage.getInsertButton().click();
+        veiculoPage.getInsertButton().click();
 
         wait.until(ExpectedConditions.alertIsPresent());
         alert = driver.switchTo().alert();
@@ -160,26 +160,26 @@ public class TransporteTests extends TesteBase {
         link.click();
         driver.switchTo().defaultContent();
 
-        VeiculosPage veiculosPage = new VeiculosPage(driver);
+        VeiculoPage veiculoPage = new VeiculoPage(driver);
         String vehiclePlate = faker.letterify("??????");
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("iptPlaca"))).sendKeys(vehiclePlate);
-        veiculosPage.getCityField().sendKeys(faker.address().city());
-        veiculosPage.getStateField().sendKeys(faker.address().state());
+        veiculoPage.getCityField().sendKeys(faker.address().city());
+        veiculoPage.getStateField().sendKeys(faker.address().state());
 
-        Select selectType = new Select(veiculosPage.getTypeDropdown());
+        Select selectType = new Select(veiculoPage.getTypeDropdown());
         selectType.selectByVisibleText("Urbano");
 
-        veiculosPage.getBrandField().sendKeys(faker.company().name());
-        veiculosPage.getModelField().sendKeys(faker.aviation().aircraft());
-        veiculosPage.getYearField().sendKeys(faker.number().digits(4));
+        veiculoPage.getBrandField().sendKeys(faker.company().name());
+        veiculoPage.getModelField().sendKeys(faker.aviation().aircraft());
+        veiculoPage.getYearField().sendKeys(faker.number().digits(4));
 
-        Select selectFuel = new Select(veiculosPage.getFuelDropdown());
+        Select selectFuel = new Select(veiculoPage.getFuelDropdown());
         selectFuel.selectByVisibleText("Gasolina");
 
-        veiculosPage.getColorField().sendKeys(faker.color().name());
-        veiculosPage.getMaxSpeedField().sendKeys(faker.number().digits(3));
+        veiculoPage.getColorField().sendKeys(faker.color().name());
+        veiculoPage.getMaxSpeedField().sendKeys(faker.number().digits(3));
 
-        veiculosPage.getInsertButton().click();
+        veiculoPage.getInsertButton().click();
 
         wait.until(ExpectedConditions.alertIsPresent());
         alert = driver.switchTo().alert();
@@ -307,26 +307,26 @@ public class TransporteTests extends TesteBase {
         link.click();
         driver.switchTo().defaultContent();
 
-        VeiculosPage veiculosPage = new VeiculosPage(driver);
+        VeiculoPage veiculoPage = new VeiculoPage(driver);
         String vehiclePlate = "aaa";
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("iptPlaca"))).sendKeys(vehiclePlate);
-        veiculosPage.getCityField().sendKeys(faker.address().city());
-        veiculosPage.getStateField().sendKeys(faker.address().state());
+        veiculoPage.getCityField().sendKeys(faker.address().city());
+        veiculoPage.getStateField().sendKeys(faker.address().state());
 
-        Select selectType = new Select(veiculosPage.getTypeDropdown());
+        Select selectType = new Select(veiculoPage.getTypeDropdown());
         selectType.selectByVisibleText("Urbano");
 
-        veiculosPage.getBrandField().sendKeys(faker.company().name());
-        veiculosPage.getModelField().sendKeys(faker.aviation().aircraft());
-        veiculosPage.getYearField().sendKeys(faker.number().digits(4));
+        veiculoPage.getBrandField().sendKeys(faker.company().name());
+        veiculoPage.getModelField().sendKeys(faker.aviation().aircraft());
+        veiculoPage.getYearField().sendKeys(faker.number().digits(4));
 
-        Select selectFuel = new Select(veiculosPage.getFuelDropdown());
+        Select selectFuel = new Select(veiculoPage.getFuelDropdown());
         selectFuel.selectByVisibleText("Gasolina");
 
-        veiculosPage.getColorField().sendKeys(faker.color().name());
-        veiculosPage.getMaxSpeedField().sendKeys(faker.number().digits(3));
+        veiculoPage.getColorField().sendKeys(faker.color().name());
+        veiculoPage.getMaxSpeedField().sendKeys(faker.number().digits(3));
 
-        veiculosPage.getInsertButton().click();
+        veiculoPage.getInsertButton().click();
 
         wait.until(ExpectedConditions.alertIsPresent());
         alert = driver.switchTo().alert();
@@ -441,30 +441,30 @@ public class TransporteTests extends TesteBase {
         link.click();
         driver.switchTo().defaultContent();
 
-        VeiculosPage veiculosPage = new VeiculosPage(driver);
+        VeiculoPage veiculoPage = new VeiculoPage(driver);
         String vehiclePlate1 = "aaa";
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("iptPlaca"))).sendKeys(vehiclePlate1);
-        veiculosPage.getCityField().sendKeys(faker.address().city());
-        veiculosPage.getStateField().sendKeys(faker.address().state());
+        veiculoPage.getCityField().sendKeys(faker.address().city());
+        veiculoPage.getStateField().sendKeys(faker.address().state());
 
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("iptTipo")));
         WebElement typeDropdown = driver.findElement(By.id("iptTipo"));
         Select selectType = new Select(typeDropdown);
         selectType.selectByVisibleText("Urbano");
 
-        veiculosPage.getBrandField().sendKeys(faker.company().name());
-        veiculosPage.getModelField().sendKeys(faker.aviation().aircraft());
-        veiculosPage.getYearField().sendKeys(faker.number().digits(4));
+        veiculoPage.getBrandField().sendKeys(faker.company().name());
+        veiculoPage.getModelField().sendKeys(faker.aviation().aircraft());
+        veiculoPage.getYearField().sendKeys(faker.number().digits(4));
 
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("iptCombustiveis")));
         WebElement fuelDropdown = driver.findElement(By.id("iptCombustiveis"));
         Select selectFuel = new Select(fuelDropdown);
         selectFuel.selectByVisibleText("Gasolina");
 
-        veiculosPage.getColorField().sendKeys(faker.color().name());
-        veiculosPage.getMaxSpeedField().sendKeys(faker.number().digits(3));
+        veiculoPage.getColorField().sendKeys(faker.color().name());
+        veiculoPage.getMaxSpeedField().sendKeys(faker.number().digits(3));
 
-        veiculosPage.getInsertButton().click();
+        veiculoPage.getInsertButton().click();
 
         wait.until(ExpectedConditions.alertIsPresent());
         alert = driver.switchTo().alert();
@@ -543,27 +543,27 @@ public class TransporteTests extends TesteBase {
 
         String vehiclePlate2 = "bbb";
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("iptPlaca"))).sendKeys(vehiclePlate2);
-        veiculosPage.getCityField().sendKeys(faker.address().city());
-        veiculosPage.getStateField().sendKeys(faker.address().state());
+        veiculoPage.getCityField().sendKeys(faker.address().city());
+        veiculoPage.getStateField().sendKeys(faker.address().state());
 
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("iptTipo")));
         typeDropdown = driver.findElement(By.id("iptTipo"));
         selectType = new Select(typeDropdown);
         selectType.selectByVisibleText("Urbano");
 
-        veiculosPage.getBrandField().sendKeys(faker.company().name());
-        veiculosPage.getModelField().sendKeys(faker.aviation().aircraft());
-        veiculosPage.getYearField().sendKeys(faker.number().digits(4));
+        veiculoPage.getBrandField().sendKeys(faker.company().name());
+        veiculoPage.getModelField().sendKeys(faker.aviation().aircraft());
+        veiculoPage.getYearField().sendKeys(faker.number().digits(4));
 
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("iptCombustiveis")));
         fuelDropdown = driver.findElement(By.id("iptCombustiveis"));
         selectFuel = new Select(fuelDropdown);
         selectFuel.selectByVisibleText("Gasolina");
 
-        veiculosPage.getColorField().sendKeys(faker.color().name());
-        veiculosPage.getMaxSpeedField().sendKeys(faker.number().digits(3));
+        veiculoPage.getColorField().sendKeys(faker.color().name());
+        veiculoPage.getMaxSpeedField().sendKeys(faker.number().digits(3));
 
-        veiculosPage.getInsertButton().click();
+        veiculoPage.getInsertButton().click();
 
         wait.until(ExpectedConditions.alertIsPresent());
         alert = driver.switchTo().alert();
@@ -665,30 +665,30 @@ public class TransporteTests extends TesteBase {
         link.click();
         driver.switchTo().defaultContent();
 
-        VeiculosPage veiculosPage = new VeiculosPage(driver);
+        VeiculoPage veiculoPage = new VeiculoPage(driver);
         String vehiclePlate1 = "aaa";
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("iptPlaca"))).sendKeys(vehiclePlate1);
-        veiculosPage.getCityField().sendKeys(faker.address().city());
-        veiculosPage.getStateField().sendKeys(faker.address().state());
+        veiculoPage.getCityField().sendKeys(faker.address().city());
+        veiculoPage.getStateField().sendKeys(faker.address().state());
 
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("iptTipo")));
         WebElement typeDropdown = driver.findElement(By.id("iptTipo"));
         Select selectType = new Select(typeDropdown);
         selectType.selectByVisibleText("Urbano");
 
-        veiculosPage.getBrandField().sendKeys(faker.company().name());
-        veiculosPage.getModelField().sendKeys(faker.aviation().aircraft());
-        veiculosPage.getYearField().sendKeys(faker.number().digits(4));
+        veiculoPage.getBrandField().sendKeys(faker.company().name());
+        veiculoPage.getModelField().sendKeys(faker.aviation().aircraft());
+        veiculoPage.getYearField().sendKeys(faker.number().digits(4));
 
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("iptCombustiveis")));
         WebElement fuelDropdown = driver.findElement(By.id("iptCombustiveis"));
         Select selectFuel = new Select(fuelDropdown);
         selectFuel.selectByVisibleText("Gasolina");
 
-        veiculosPage.getColorField().sendKeys(faker.color().name());
-        veiculosPage.getMaxSpeedField().sendKeys(faker.number().digits(3));
+        veiculoPage.getColorField().sendKeys(faker.color().name());
+        veiculoPage.getMaxSpeedField().sendKeys(faker.number().digits(3));
 
-        veiculosPage.getInsertButton().click();
+        veiculoPage.getInsertButton().click();
 
         wait.until(ExpectedConditions.alertIsPresent());
         alert = driver.switchTo().alert();
@@ -791,29 +791,29 @@ public class TransporteTests extends TesteBase {
         link.click();
         driver.switchTo().defaultContent();
 
-        VeiculosPage veiculosPage = new VeiculosPage(driver);
+        VeiculoPage veiculoPage = new VeiculoPage(driver);
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("iptPlaca"))).sendKeys("");
-        veiculosPage.getCityField().sendKeys(faker.address().city());
-        veiculosPage.getStateField().sendKeys(faker.address().state());
+        veiculoPage.getCityField().sendKeys(faker.address().city());
+        veiculoPage.getStateField().sendKeys(faker.address().state());
 
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("iptTipo")));
         WebElement typeDropdown = driver.findElement(By.id("iptTipo"));
         Select selectType = new Select(typeDropdown);
         selectType.selectByVisibleText("Urbano");
 
-        veiculosPage.getBrandField().sendKeys(faker.company().name());
-        veiculosPage.getModelField().sendKeys(faker.aviation().aircraft());
-        veiculosPage.getYearField().sendKeys(faker.number().digits(4));
+        veiculoPage.getBrandField().sendKeys(faker.company().name());
+        veiculoPage.getModelField().sendKeys(faker.aviation().aircraft());
+        veiculoPage.getYearField().sendKeys(faker.number().digits(4));
 
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("iptCombustiveis")));
         WebElement fuelDropdown = driver.findElement(By.id("iptCombustiveis"));
         Select selectFuel = new Select(fuelDropdown);
         selectFuel.selectByVisibleText("Gasolina");
 
-        veiculosPage.getColorField().sendKeys(faker.color().name());
-        veiculosPage.getMaxSpeedField().sendKeys(faker.number().digits(3));
+        veiculoPage.getColorField().sendKeys(faker.color().name());
+        veiculoPage.getMaxSpeedField().sendKeys(faker.number().digits(3));
 
-        veiculosPage.getInsertButton().click();
+        veiculoPage.getInsertButton().click();
 
         wait.until(ExpectedConditions.alertIsPresent());
         alert = driver.switchTo().alert();
@@ -863,30 +863,30 @@ public class TransporteTests extends TesteBase {
         link.click();
         driver.switchTo().defaultContent();
 
-        VeiculosPage veiculosPage = new VeiculosPage(driver);
+        VeiculoPage veiculoPage = new VeiculoPage(driver);
         String vehiclePlate = "ccc";
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("iptPlaca"))).sendKeys(vehiclePlate);
-        veiculosPage.getCityField().sendKeys(faker.address().city());
-        veiculosPage.getStateField().sendKeys(faker.address().state());
+        veiculoPage.getCityField().sendKeys(faker.address().city());
+        veiculoPage.getStateField().sendKeys(faker.address().state());
 
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("iptTipo")));
         WebElement typeDropdown = driver.findElement(By.id("iptTipo"));
         Select selectType = new Select(typeDropdown);
         selectType.selectByVisibleText("Urbano");
 
-        veiculosPage.getBrandField().sendKeys(faker.company().name());
-        veiculosPage.getModelField().sendKeys(faker.aviation().aircraft());
-        veiculosPage.getYearField().sendKeys(faker.number().digits(4));
+        veiculoPage.getBrandField().sendKeys(faker.company().name());
+        veiculoPage.getModelField().sendKeys(faker.aviation().aircraft());
+        veiculoPage.getYearField().sendKeys(faker.number().digits(4));
 
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("iptCombustiveis")));
         WebElement fuelDropdown = driver.findElement(By.id("iptCombustiveis"));
         Select selectFuel = new Select(fuelDropdown);
         selectFuel.selectByVisibleText("Gasolina");
 
-        veiculosPage.getColorField().sendKeys(faker.color().name());
-        veiculosPage.getMaxSpeedField().sendKeys(faker.number().digits(3));
+        veiculoPage.getColorField().sendKeys(faker.color().name());
+        veiculoPage.getMaxSpeedField().sendKeys(faker.number().digits(3));
 
-        veiculosPage.getInsertButton().click();
+        veiculoPage.getInsertButton().click();
 
         wait.until(ExpectedConditions.alertIsPresent());
         Alert alert = driver.switchTo().alert();
