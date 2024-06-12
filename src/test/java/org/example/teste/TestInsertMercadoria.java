@@ -48,6 +48,20 @@ public class TestInsertMercadoria {
         mercadoriaPage.submitForm();
 
     }
+    @Test
+    @DisplayName("ShouldInsertMercadorias")
+    public void ShouldInsertMercadoria(){
+        mercadoriaPage.navigateTo(BASE_URL);
+        String newCodigo = TestDataGenerator.generateCodigo();
+        String newDescricao = TestDataGenerator.generateDescricao();
+        String newValidade = TestDataGenerator.generateDataValidade();
+        String newPeso = TestDataGenerator.generatePeso();
+        String newAltura = TestDataGenerator.generateAltura();
+        String newLargura = TestDataGenerator.generateLargura();
+        String newVolume = TestDataGenerator.generateVolume();
+        String newFragilidade = TestDataGenerator.generateFragilidade();
+        mercadoriaPage.InsertMercadoria(newCodigo,newFragilidade,newAltura,newLargura,newDescricao,newPeso,newValidade,newVolume);
+    }
 
     public void TestConnection() {
         String firefoxBinaryPath = "/snap/firefox/current/usr/lib/firefox/firefox";

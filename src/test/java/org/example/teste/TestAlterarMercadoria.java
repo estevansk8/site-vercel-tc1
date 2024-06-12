@@ -77,4 +77,29 @@ public class TestAlterarMercadoria {
         assertThat(alertText).isEqualTo("Código não encontrado!");
 
     }
+    @Test
+    @DisplayName("ShouldUpdateMercadoria")
+    void ShouldUpdateMercadoria() {
+        // Navigate to the Mercadoria page
+        MercadoriaPage mercadoriaPage = new MercadoriaPage(driver);
+        mercadoriaPage.navigateTo(BASE_URL);
+
+        // Generate new data for update
+        String newCodigo = TestDataGenerator.generateCodigo();
+        String newDescricao = TestDataGenerator.generateDescricao();
+        String newValidade = TestDataGenerator.generateDataValidade();
+        String newPeso = TestDataGenerator.generatePeso();
+        String newAltura = TestDataGenerator.generateAltura();
+        String newLargura = TestDataGenerator.generateLargura();
+        String newVolume = TestDataGenerator.generateVolume();
+        String newFragilidade = TestDataGenerator.generateFragilidade();
+
+        mercadoriaPage.fillForm(newCodigo, newDescricao, newValidade, newPeso, newAltura, newLargura, newVolume, newFragilidade);
+
+        mercadoriaPage.submitForm();
+
+        String alertText = mercadoriaPage.waitForAlertAndGetText();
+        assertThat(alertText).isEqualTo("Código não encontrado!");
+
+    }
 }

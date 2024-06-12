@@ -156,5 +156,10 @@ public class MercadoriaPage extends BasePage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.alertIsPresent()).getText();
     }
+    public void InsertMercadoria(String codigo, String descricao, String validade, String peso, String altura, String largura, String volume, String fragilidade){
+
+        fillForm(codigo,descricao,validade,peso,altura,largura,volume,fragilidade);
+        submitForm();
+    }
 
 }
