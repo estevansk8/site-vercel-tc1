@@ -98,4 +98,32 @@ public class VeiculosTest {
         wait.until(ExpectedConditions.visibilityOfElementLocated(listedVehiclesHeader));
         assertTrue(driver.findElement(listedVehiclesHeader).isDisplayed(), "Listed vehicles header should be displayed after search");
     }
+
+    @Test
+    @DisplayName("Should delete vehicle and show success message")
+    public void shoulDeleteAndShowSuccessAlert() throws InterruptedException {
+        veiculosPage.insertVehicleDataKnowingPlate();
+        veiculosPage.clickInsert();
+        wait.until(ExpectedConditions.alertIsPresent());
+
+        Alert alert = driver.switchTo().alert();
+        assertEquals("Cadastrado com sucesso!", alert.getText());
+        alert.accept();
+
+        WebElement sidebar = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//iframe[@src='barralateral.html']")));
+        driver.switchTo().frame(sidebar);
+        WebElement delete = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/ul/li[3]/a")));
+        delete.click();
+
+        driver.switchTo().defaultContent();
+        wait.until(ExpectedConditions.urlContains("excluir.html"));
+        final By deletePlateInput = By.xpath("//*[@id=\"iptPlacaExcluir\"]");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(deletePlateInput));
+        driver.findElement(deletePlateInput).sendKeys("EWQ9640");
+        veiculosPage.clickDeleteItem();
+
+        Alert deleteAlert = driver.switchTo().alert();
+        String text = alert.getText();
+        assertEquals("Placa excluída!", text);
+    }
 }
