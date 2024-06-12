@@ -27,6 +27,9 @@ public class VeiculosPage extends Base {
     String speed = faker.bothify("###");
 
     private final By veiculosButtonXPath = By.xpath("//button[contains(text(),'Veiculos')]");
+    private final By listXPath = By.xpath("/html/body/ul/li[4]/a");
+    private final By searchXPath = By.xpath("//*[@id=\"envolucro\"]/div[2]/button");
+    private final By listedVehiclesHeader = By.xpath("//*[@id=\"conteudoListagem\"]/div/div[1]");
     private final By plateXPath = By.xpath("//input[@id='iptPlaca']");
     private final By cityXPath = By.xpath("//input[@id='iptCidade']");
     private final By stateXPath = By.xpath("//input[@id='iptEstado']");
@@ -70,5 +73,13 @@ public class VeiculosPage extends Base {
 
     public void clickInsert() {
         driver.findElement(insertXPath).click();
+    }
+
+    public void clickList(){
+        driver.findElement(listXPath).click();
+    }
+
+    public void clickSearch(){
+        driver.findElement(searchXPath).click();
     }
 }
