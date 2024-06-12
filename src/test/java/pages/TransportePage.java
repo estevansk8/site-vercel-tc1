@@ -84,4 +84,10 @@ public class TransportePage {
     public WebElement getUpdateButton() {
         return driver.findElement(By.id("alterarTransporte"));
     }
+    public WebElement getDeleteButton() {
+        return driver.findElement(By.id("excluirTransporte"));
+    }
+    public WebElement getDeleteTransportDropdown() {
+        return driver.findElement(By.id("iptTransporte"));
+    }
 }
