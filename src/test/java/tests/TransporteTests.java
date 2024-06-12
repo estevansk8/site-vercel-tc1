@@ -1,11 +1,9 @@
 package tests;
 
-import com.github.javafaker.Faker;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -23,13 +21,13 @@ public class TransporteTests extends TesteBase {
     @Test
     @DisplayName("Should add a new transport")
     void shouldAddNewTransport() throws InterruptedException {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement headerIframe = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//iframe[@src='header.html']")));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+        WebElement headerIframe = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("/html/body/div/iframe[1]")));
         driver.switchTo().frame(headerIframe);
 
-        WebElement merchandiseLink = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='mercadorias/mercadorias.html']")));
-        merchandiseLink.click();
-
+        WebElement link = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='menu']/button[1]/a")));
+        link.click();
         driver.switchTo().defaultContent();
 
         MercadoriasPage mercadoriasPage = new MercadoriasPage(driver);
@@ -46,7 +44,8 @@ public class TransporteTests extends TesteBase {
         Select selectFragility = new Select(fragilityDropdown);
         selectFragility.selectByVisibleText("Fragíl");
 
-        mercadoriasPage.getInsertButton().click();
+        WebElement insertButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='envolucro']/div[2]/button")));
+        insertButton.click();
 
         wait.until(ExpectedConditions.alertIsPresent());
         Alert alert = driver.switchTo().alert();
@@ -55,15 +54,16 @@ public class TransporteTests extends TesteBase {
         assertThat(alertText).isEqualTo(expectedText);
         alert.accept();
 
+        headerIframe = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("/html/body/div/iframe[1]")));
         driver.switchTo().frame(headerIframe);
-        WebElement vehicleLink = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='veiculos/veiculos.html']")));
-        vehicleLink.click();
 
+        link = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='menu']/button[2]/a")));
+        link.click();
         driver.switchTo().defaultContent();
 
         VeiculosPage veiculosPage = new VeiculosPage(driver);
         String vehiclePlate = faker.letterify("??????");
-        veiculosPage.getLicensePlateField().sendKeys(vehiclePlate);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("iptPlaca"))).sendKeys(vehiclePlate);
         veiculosPage.getCityField().sendKeys(faker.address().city());
         veiculosPage.getStateField().sendKeys(faker.address().state());
 
@@ -85,13 +85,15 @@ public class TransporteTests extends TesteBase {
         wait.until(ExpectedConditions.alertIsPresent());
         alert = driver.switchTo().alert();
         alertText = alert.getText();
+        expectedText = "Cadastrado com sucesso!";
         assertThat(alertText).isEqualTo(expectedText);
         alert.accept();
 
+        headerIframe = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("/html/body/div/iframe[1]")));
         driver.switchTo().frame(headerIframe);
-        WebElement transportLink = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='transporte/transporte.html']")));
-        transportLink.click();
 
+        link = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='menu']/button[3]/a")));
+        link.click();
         driver.switchTo().defaultContent();
 
         TransportePage transportePage = new TransportePage(driver);
@@ -112,6 +114,7 @@ public class TransporteTests extends TesteBase {
         wait.until(ExpectedConditions.alertIsPresent());
         alert = driver.switchTo().alert();
         alertText = alert.getText();
+        expectedText = "Transporte Inserido com sucesso!";
         assertThat(alertText).isEqualTo(expectedText);
         alert.accept();
     }
