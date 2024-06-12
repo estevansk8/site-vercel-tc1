@@ -80,6 +80,42 @@ public class VeiculosTest {
     }
 
     @Test
+    @DisplayName("Should only list vehicles that are ok with the filter")
+    public void shouldOnlyShowFilteredVehicles(){
+        veiculosPage.insertVehicleData();
+        veiculosPage.clickInsert();
+        wait.until(ExpectedConditions.alertIsPresent());
+
+        Alert alert = driver.switchTo().alert();
+        alert.accept();
+
+        driver.switchTo().defaultContent();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='iptPlaca']")));
+        veiculosPage.insertVehicleData();
+        veiculosPage.clickInsert();
+        wait.until(ExpectedConditions.alertIsPresent());
+
+        Alert alert2 = driver.switchTo().alert();
+        alert2.accept();
+
+        WebElement sidebar = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//iframe[@src='barralateral.html']")));
+        driver.switchTo().frame(sidebar);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/ul/li[4]/a")));
+        veiculosPage.clickList();
+
+//        driver.switchTo().defaultContent();
+
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"iptTipo\"]")));
+        WebElement plateInput = driver.findElement(By.xpath("//*[@id=\"iptTipo\"]"));
+        plateInput.sendKeys("Teste");
+        veiculosPage.clickSearch();
+
+        WebElement divListing = driver.findElement(By.xpath("//*[@id=\"conteudoListagem\"]/div[1]/div[2]"));
+        assertFalse(divListing.isDisplayed());
+    }
+
+    @Test
     @DisplayName("Should go to List All page and list vehicles")
     public void shouldListVehicles() throws InterruptedException {
         veiculosPage.insertVehicleData();
