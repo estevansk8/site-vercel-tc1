@@ -1,97 +1,93 @@
 package org.example;
-
 import com.github.javafaker.Faker;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.FirefoxBinary;
+import org.openqa.selenium.firefox.FirefoxDriverService;
 
+import java.io.File;
 import java.time.Duration;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class OPLTest {
-    private WebDriver driver;
-    private WebDriverWait wait;
-    private Faker faker;
-    private final String BASE_URL = "https://site-vercel-tc1.vercel.app/mercadorias/mercadorias.html";
+    String BASE_URL= "https://site-vercel-tc1.vercel.app/mercadorias/mercadorias.html";
+    WebDriver driver;
+
+    @BeforeAll
+    static void setupAll() {
+        WebDriverManager.firefoxdriver().setup();
+    }
 
     @BeforeEach
-    public void setUp() {
-        System.out.println("Setting up driver");
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-        System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver/chrome-linux64/chrome");
-        driver = new ChromeDriver(options);
-
-        driver.get("https://site-vercel-tc1.vercel.app/index.html");
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        faker = new Faker();
+    void setup() {
+        TestConnection();
     }
 
     @AfterEach
-    public void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
-    }
-    @Test
-    @DisplayName("Should open and close chrome browser using Manager")
-    void shouldOpenAndCloseChromeBrowserUsingManager() throws InterruptedException {
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://www.google.com");
-        Thread.sleep(1000);
+    void tearDown(){
         driver.quit();
     }
 
+
+    public void TestConnection() {
+        // Caminhos para o Firefox e geckodriver
+        String firefoxBinaryPath = "/snap/firefox/current/usr/lib/firefox/firefox";
+        String geckoDriverPath = "/snap/firefox/current/usr/lib/firefox/geckodriver";
+
+        // Configurando o binário do Firefox
+        FirefoxBinary firefoxBinary = new FirefoxBinary(new File(firefoxBinaryPath));
+
+        // Configurando o geckodriver
+        System.setProperty("webdriver.gecko.driver", geckoDriverPath);
+
+        // Configurando as opções do Firefox
+        FirefoxOptions options = new FirefoxOptions();
+        options.setBinary(firefoxBinary);
+
+        // Criando a instância do WebDriver
+        driver = new FirefoxDriver(options);
+
+        // Exemplo de navegação
+        driver.get("https://www.google.com");
+    }
+    @Test
+    @DisplayName("Should open test Speed Site")
+    public void ShouldOpenSpeedSiteTest() {
+        driver.get(BASE_URL);
+    }
+
+
     @Test
     public void testInserirMercadoria() {
-        fillInFormWithTestData();
-        submitForm();
-        verifySuccessMessage();
-    }
+        // Localize os elementos do formulário e preencha-os
+        WebElement codigo = driver.findElement(By.name("codigo"));
+        WebElement descricao = driver.findElement(By.name("descricao"));
+        WebElement validade = driver.findElement(By.name("validade"));
+        WebElement peso = driver.findElement(By.name("peso"));
+        WebElement altura = driver.findElement(By.name("altura"));
+        WebElement largura = driver.findElement(By.name("largura"));
+        WebElement volume = driver.findElement(By.name("volume"));
+        WebElement fragilidade = driver.findElement(By.name("fragilidade"));
 
-    @Test
-    public void testGetSiteTitle() {
-        String title = getSiteTitle();
-        assertEquals("Speed", title); // Substitua "Expected Title" pelo título esperado do site
-    }
+        codigo.sendKeys("12345");
+        descricao.sendKeys("Teste de mercadoria");
+        validade.sendKeys("12/31/2024");
+        peso.sendKeys("10");
+        altura.sendKeys("20");
+        largura.sendKeys("30");
+        volume.sendKeys("6000");
+        fragilidade.sendKeys("Frágil");
 
-    private void fillInFormWithTestData() {
-        setInputFieldByName("codigo", "12345");
-        setInputFieldByName("descricao", "Teste de mercadoria");
-        setInputFieldByName("validade", "12/31/2024");
-        setInputFieldByName("peso", "10");
-        setInputFieldByName("altura", "20");
-        setInputFieldByName("largura", "30");
-        setInputFieldByName("volume", "6000");
-        setInputFieldByName("fragilidade", "Frágil");
-    }
+        WebElement inserirButton = driver.findElement(By.cssSelector("button[type='submit']"));
+        inserirButton.click();
 
-    private void setInputFieldByName(String fieldName, String value) {
-        WebElement field = driver.findElement(By.name(fieldName));
-        field.sendKeys(value);
-    }
-
-    private void submitForm() {
-        WebElement submitButton = driver.findElement(By.cssSelector("button[type='submit']"));
-        submitButton.click();
-    }
-
-    private void verifySuccessMessage() {
-        WebElement successMessage = driver.findElement(By.id("resultado"));
-        assertEquals("Mercadoria inserida com sucesso!", successMessage.getText());
-    }
-
-    private String getSiteTitle() {
-        driver.get(BASE_URL);
-        return driver.getTitle();
+        // Verifique o resultado esperado (depende do comportamento da sua aplicação)
+        WebElement resultado = driver.findElement(By.id("resultado"));
+        assertEquals("Mercadoria inserida com sucesso!", resultado.getText());
     }
 }
