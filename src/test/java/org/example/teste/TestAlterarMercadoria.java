@@ -21,7 +21,6 @@ import java.time.Instant;
 import java.util.Locale;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.bouncycastle.crypto.tls.ContentType.alert;
 
 public class TestAlterarMercadoria {
     String BASE_URL = "https://site-vercel-tc1.vercel.app/mercadorias/alterar.html";
@@ -121,5 +120,21 @@ public class TestAlterarMercadoria {
 
         String updateAlertText = mercadoriaPage.waitForAlertAndGetText();
         assertThat(updateAlertText).isEqualTo("Alterado com sucesso!");
+    }
+    @Test
+    @DisplayName("ShouldThrowErrorWhenAllBlank")
+    void ShouldThrowErrorWhenAllBlank(){
+        //at this test the result is not the expected but we have already related the issue..
+        mercadoriaPage.navigateTo(BASE_URL);
+        mercadoriaPage.clearAllFields();
+        mercadoriaPage.submitForm();
+        try {
+            Thread.sleep(1000); // Pausa de 2 segundos (2000 milissegundos)
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        String updateAlertText = mercadoriaPage.waitForAlertAndGetText();
+        assertThat(updateAlertText).isEqualTo("Código está em branco");
     }
 }

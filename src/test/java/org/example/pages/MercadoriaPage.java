@@ -149,6 +149,15 @@ public class MercadoriaPage extends BasePage {
         setCodigo(codigo);
         setDate(validade);
     }
+    public void clearAllFields() {
+        driver.findElement(descricaoInput).clear();
+        driver.findElement(dateInput).clear();
+        driver.findElement(pesoInput).clear();
+        driver.findElement(codigoInput).clear();
+        driver.findElement(alturaInput).clear();
+        driver.findElement(larguraInput).clear();
+        driver.findElement(volumeInput).clear();
+    }
 
 
     public String waitForAlertAndGetText() {
