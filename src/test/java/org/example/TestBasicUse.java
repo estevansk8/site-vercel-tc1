@@ -9,7 +9,6 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.io.File;
 import java.time.Duration;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -51,11 +50,8 @@ public class TestBasicUse {
         options.setBinary(firefoxBinary);
 
         // Criando a instância do WebDriver
-        driver = new FirefoxDriver(options);
+        driver = new FirefoxDriver(options);}
 
-        // Exemplo de navegação
-        driver.get("https://www.google.com");
-    }
     @Test
     @DisplayName("Should open test Speed Site")
     public void ShouldOpenSpeedSiteTest() {
