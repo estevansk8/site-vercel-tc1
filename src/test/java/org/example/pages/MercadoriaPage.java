@@ -1,11 +1,13 @@
 package org.example.pages;
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.time.Instant;
 
 public class MercadoriaPage extends BasePage {
 
@@ -25,6 +27,15 @@ public class MercadoriaPage extends BasePage {
         super(driver);
     }
 
+    public String getErrorMessage() {
+        try {
+            WebElement errorMessageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".error-message")));
+            return errorMessageElement.getText();
+
+        } catch (TimeoutException e) {
+            return "Erro: Mensagem de erro não encontrada após submissão do formulário.";
+        }
+    }
     public void clickMercadoriasButton() {
         waitForElement(mercadoriasButton);
         WebElement button = driver.findElement(mercadoriasButton);
