@@ -5,6 +5,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.example.pages.MercadoriaPage;
 import org.example.utils.TestDataGenerator;
 import org.junit.jupiter.api.*;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxBinary;
@@ -16,9 +17,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
 import java.time.Duration;
+import java.time.Instant;
 import java.util.Locale;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.bouncycastle.crypto.tls.ContentType.alert;
 
 public class TestAlterarMercadoria {
     String BASE_URL = "https://site-vercel-tc1.vercel.app/mercadorias/alterar.html";
@@ -69,37 +72,55 @@ public class TestAlterarMercadoria {
         String newVolume = TestDataGenerator.generateVolume();
         String newFragilidade = TestDataGenerator.generateFragilidade();
 
-        mercadoriaPage.fillForm(newCodigo, newDescricao, newValidade, newPeso, newAltura, newLargura, newVolume, newFragilidade);
-
+        mercadoriaPage.fillForm(newCodigo,newDescricao,newValidade,newPeso,newAltura,newLargura,newVolume,newFragilidade);
         mercadoriaPage.submitForm();
-
+        try {
+            Thread.sleep(2000); // Pausa de 2 segundos (2000 milissegundos)
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         String alertText = mercadoriaPage.waitForAlertAndGetText();
         assertThat(alertText).isEqualTo("Código não encontrado!");
 
     }
     @Test
-    @DisplayName("ShouldUpdateMercadoria")
-    void ShouldUpdateMercadoria() {
+    @DisplayName("Should update Mercadoria")
+    void shouldUpdateMercadoria() {
         // Navigate to the Mercadoria page
         MercadoriaPage mercadoriaPage = new MercadoriaPage(driver);
-        mercadoriaPage.navigateTo(BASE_URL);
+        mercadoriaPage.navigateTo("https://site-vercel-tc1.vercel.app/mercadorias/mercadorias.html");
+
+        // Generate new data for insertion
+        String codigo = TestDataGenerator.generateCodigo();
+        String descricao = TestDataGenerator.generateDescricao();
+        String validade = TestDataGenerator.generateDataValidade();
+        String peso = TestDataGenerator.generatePeso();
+        String altura = TestDataGenerator.generateAltura();
+        String largura = TestDataGenerator.generateLargura();
+        String volume = TestDataGenerator.generateVolume();
+        String fragilidade = TestDataGenerator.generateFragilidade();
+
+        // Insert new Mercadoria
+        mercadoriaPage.InsertMercadoria(codigo, descricao, validade, altura, fragilidade, peso, volume, largura);
+
+        // Wait for success alert
+        String successAlertText = mercadoriaPage.waitForAlertAndAccept();
 
         // Generate new data for update
-        String newCodigo = TestDataGenerator.generateCodigo();
-        String newDescricao = TestDataGenerator.generateDescricao();
-        String newValidade = TestDataGenerator.generateDataValidade();
-        String newPeso = TestDataGenerator.generatePeso();
-        String newAltura = TestDataGenerator.generateAltura();
-        String newLargura = TestDataGenerator.generateLargura();
-        String newVolume = TestDataGenerator.generateVolume();
-        String newFragilidade = TestDataGenerator.generateFragilidade();
+        String updatePeso = TestDataGenerator.generatePeso();
+        String updateAltura = TestDataGenerator.generateAltura();
+        String updateLargura = TestDataGenerator.generateLargura();
+        String updateVolume = TestDataGenerator.generateVolume();
 
-        mercadoriaPage.fillForm(newCodigo, newDescricao, newValidade, newPeso, newAltura, newLargura, newVolume, newFragilidade);
+        // Click "Alterar" and update Mercadoria
+        mercadoriaPage.clickAlterar();
 
+        // Fill and submit the update form
+        mercadoriaPage.fillForm(codigo, descricao, altura, fragilidade, updateLargura, updatePeso, updateVolume, updateAltura);
         mercadoriaPage.submitForm();
 
-        String alertText = mercadoriaPage.waitForAlertAndGetText();
-        assertThat(alertText).isEqualTo("Código não encontrado!");
-
+        // Wait for success alert after update
+        String updateAlertText = mercadoriaPage.waitForAlertAndGetText();
+        assertThat(updateAlertText).isEqualTo("Alterada com sucesso");
     }
 }

@@ -1,8 +1,5 @@
 package org.example.pages;
-import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -152,6 +149,8 @@ public class MercadoriaPage extends BasePage {
         setCodigo(codigo);
         setDate(validade);
     }
+
+
     public String waitForAlertAndGetText() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.alertIsPresent()).getText();
@@ -162,4 +161,13 @@ public class MercadoriaPage extends BasePage {
         submitForm();
     }
 
+    public void clickAlterar() {
+        navigateTo("https://site-vercel-tc1.vercel.app/mercadorias/alterar.html");
+    }
+    public void waitForAlertAndAccept() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.alertIsPresent());
+        Alert alert = driver.switchTo().alert();
+        alert.accept();
+    }
 }
