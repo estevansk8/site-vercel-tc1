@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,64 +9,79 @@ import org.openqa.selenium.support.PageFactory;
 public class TransportePage {
     WebDriver driver;
 
-    @FindBy(id = "iptPlaca")
-    WebElement plateDropdown;
-
-    @FindBy(id = "iptCodigo")
-    WebElement codeDropdown;
-
-    @FindBy(id = "iptDataInicio")
-    WebElement startDateField;
-
-    @FindBy(id = "iptDataTermino")
-    WebElement endDateField;
-
-    @FindBy(id = "iptCidadeInicio")
-    WebElement startCityField;
-
-    @FindBy(id = "iptCidadeTermino")
-    WebElement endCityField;
-
-    @FindBy(id = "iptQuilometros")
-    WebElement kilometersField;
-
-    @FindBy(id = "inserirTransporte")
-    WebElement insertButton;
-
     public TransportePage(WebDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(driver, this);
     }
 
     public WebElement getPlateDropdown() {
-        return plateDropdown;
+        return driver.findElement(By.id("iptPlaca"));
     }
 
     public WebElement getCodeDropdown() {
-        return codeDropdown;
+        return driver.findElement(By.id("iptCodigo"));
     }
 
     public WebElement getStartDateField() {
-        return startDateField;
+        return driver.findElement(By.id("iptDataInicio"));
     }
 
     public WebElement getEndDateField() {
-        return endDateField;
+        return driver.findElement(By.id("iptDataTermino"));
     }
 
     public WebElement getStartCityField() {
-        return startCityField;
+        return driver.findElement(By.id("iptCidadeInicio"));
     }
 
     public WebElement getEndCityField() {
-        return endCityField;
+        return driver.findElement(By.id("iptCidadeTermino"));
     }
 
     public WebElement getKilometersField() {
-        return kilometersField;
+        return driver.findElement(By.id("iptQuilometros"));
     }
 
     public WebElement getInsertButton() {
-        return insertButton;
+        return driver.findElement(By.id("inserirTransporte"));
+    }
+
+    public WebElement getTransportDropdown() {
+        return driver.findElement(By.id("iptTransporteAlterar"));
+    }
+
+    public WebElement getPlateField() {
+        return driver.findElement(By.id("iptPlacaAlterar"));
+    }
+
+    public WebElement getCityField() {
+        return driver.findElement(By.id("iptCidadeAlterar"));
+    }
+
+    public WebElement getStateField() {
+        return driver.findElement(By.id("iptEstadoAlterar"));
+    }
+
+    public WebElement getCodeField() {
+        return driver.findElement(By.id("iptCodigoAlterar"));
+    }
+
+    public WebElement getEndDateFieldAlterar() {
+        return driver.findElement(By.id("iptDataTerminoAlterar"));
+    }
+
+    public WebElement getStartCityFieldAlterar() {
+        return driver.findElement(By.id("iptCidadeInicioAlterar"));
+    }
+
+    public WebElement getEndCityFieldAlterar() {
+        return driver.findElement(By.id("iptCidadeTerminoAlterar"));
+    }
+
+    public WebElement getKilometersFieldAlterar() {
+        return driver.findElement(By.id("iptQuilometrosAlterar"));
+    }
+
+    public WebElement getUpdateButton() {
+        return driver.findElement(By.id("alterarTransporte"));
     }
 }
