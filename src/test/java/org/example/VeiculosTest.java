@@ -51,4 +51,26 @@ public class VeiculosTest {
 
         assertEquals("Cadastrado com sucesso!", textAlert);
     }
+
+    @Test
+    @DisplayName("Should show error message informing the plate already exists")
+    public void shouldFailBecauseOfExistingPlate(){
+        veiculosPage.insertVehicleDataKnowingPlate();
+        veiculosPage.clickInsert();
+
+        wait.until(ExpectedConditions.alertIsPresent());
+        Alert alert = driver.switchTo().alert();
+        alert.accept();
+
+        veiculosPage.insertVehicleDataKnowingPlate();
+        veiculosPage.clickInsert();
+        wait.until(ExpectedConditions.alertIsPresent());
+
+        Alert alert2 = driver.switchTo().alert();
+        String textAlert = alert2.getText();
+        System.out.println(textAlert);
+        alert2.accept();
+
+        assertEquals("Placa já cadastrada", textAlert);
+    }
 }
