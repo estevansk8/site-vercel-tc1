@@ -64,6 +64,7 @@ public class VeiculosTest {
         Alert alert = driver.switchTo().alert();
         alert.accept();
 
+        driver.switchTo().defaultContent();
         final By plateXPath = By.xpath("//input[@id='iptPlaca']");
         wait.until(ExpectedConditions.visibilityOfElementLocated(plateXPath));
         veiculosPage.insertVehicleDataKnowingPlate();
@@ -75,7 +76,7 @@ public class VeiculosTest {
         System.out.println(textAlert);
         alert2.accept();
 
-        assertEquals("Placa já cadastrada", textAlert);
+        assertEquals("Placa já cadastrada!", textAlert);
     }
 
     @Test
@@ -88,13 +89,13 @@ public class VeiculosTest {
         Alert alert = driver.switchTo().alert();
         alert.accept();
 
+        WebElement sidebar = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//iframe[@src='barralateral.html']")));
+        driver.switchTo().frame(sidebar);
         veiculosPage.clickList();
+        driver.switchTo().defaultContent();
         veiculosPage.clickSearch();
 
-        Thread.sleep(5000);
-
-        final By listedVehiclesHeader = By.xpath("//*[@id=\"conteudoListagem\"]/div/div[1]");
-
+        final By listedVehiclesHeader = By.xpath("//*[@id='conteudoListagem']/div[1]/div[1]");
         wait.until(ExpectedConditions.visibilityOfElementLocated(listedVehiclesHeader));
         assertTrue(driver.findElement(listedVehiclesHeader).isDisplayed(), "Listed vehicles header should be displayed after search");
     }

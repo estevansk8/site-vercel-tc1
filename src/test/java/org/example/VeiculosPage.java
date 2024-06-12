@@ -82,7 +82,7 @@ public class VeiculosPage extends Base {
     }
 
     public void clickSearch(){
-        wait.until(ExpectedConditions.visibilityOfElementLocated(searchXPath));
+        wait.until(ExpectedConditions.elementToBeClickable(searchXPath));
         driver.findElement(searchXPath).click();
     }
 
